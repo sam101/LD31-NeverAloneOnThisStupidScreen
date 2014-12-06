@@ -14,8 +14,9 @@ function findAvailableWorld(socket) {
             return worlds[i];
         }
     }
-    worlds.push(new World[worlds.length]);
-    return worlds[worlds.length - 1];
+    var newWorld = new World(worlds.length);
+    worlds.push(newWorld);
+    return newWorld;
 }
 
 function addPlayerToWorld(socket, name, callback) {
