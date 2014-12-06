@@ -41,4 +41,5 @@ Player.prototype.move = function(x, y) {
         this.data.y += y;
         this.calculatePosition();
     }
+    network.socket.emit('move', this.data.x, this.data.y);
 };

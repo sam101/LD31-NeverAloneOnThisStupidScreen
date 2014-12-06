@@ -9,6 +9,7 @@ function Player(socket, name, world) {
 
     this.data = {};
 
+    this.data.name = name;
     this.data.sprite = 0;
 
     this.generateInitialPosition();

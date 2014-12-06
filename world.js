@@ -70,6 +70,18 @@ World.prototype.addPlayer = function(socket, name, callback) {
 
 };
 
+World.prototype.movePlayer = function(player, x, y) {
+    if (this.isTileAvailable(x, y)) {
+        this.entities[player.data.y][player.data.x] = undefined;
+        player.move(x,y);
+        this.entities[player.data.y][player.data.x] = player;
+        console.log("Player " + player.name + " has moved to " + x + "," + y);
+    }
+    else {
+        console.log("Refused move to " + x + "," + y + " for " + player.name);
+    }
+}
+
 World.prototype.getPlayer = function(socket) {
     return this.players[socket.id];
 };
