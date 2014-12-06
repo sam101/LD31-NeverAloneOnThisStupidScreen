@@ -71,6 +71,13 @@ World.prototype.isAvailable = function(x, y) {
             return false;
         }
     }
+    for (var key in this.monsters) {
+        var monster = this.monsters[key];
+        if (monster.data.x == x && monster.data.y == y) {
+            return false;
+        }
+    }
+
     return true;
 };
 
