@@ -1,5 +1,6 @@
 "use strict";
 var common = require('./common');
+var formula = require('./formula');
 var tools = require('./tools');
 
 function Player(socket, name, world) {
@@ -12,6 +13,9 @@ function Player(socket, name, world) {
     this.data.name = name;
     this.data.sprite = 0;
     this.data.level = 1;
+    this.data.hp = formula.hpForLevel(this.data.level);
+    this.data.hpMax = formula.hpForLevel(this.data.level);
+
 
     this.generateInitialPosition();
 }
