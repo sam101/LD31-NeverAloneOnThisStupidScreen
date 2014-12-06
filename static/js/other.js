@@ -4,6 +4,12 @@ function Other(data) {
     var textureData = common.sprites[data.sprite];
     PIXI.Sprite.call(this, textureData.texture);
 
+    this.nameText = new PIXI.Text(data.name.toUpperCase(), {font:"9px pressstart", fill:"black"});
+    this.nameText.anchor.x = 0.3;
+    this.nameText.anchor.y = 1.5;
+
+    this.addChild(this.nameText);
+
     this.calculatePosition();
 }
 
