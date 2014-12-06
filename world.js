@@ -18,11 +18,12 @@ function World(id) {
 
 World.prototype.isFull = function() {
     return this.size >= common.PLAYERS_PER_WORLD;
-}
+};
 
 World.prototype.generate = function() {
+    console.log("Currently generating the world...");
     this.tiles = worldGenerator.generate(this.width, this.height);
-}
+};
 
 World.prototype.addPlayer = function(socket, name, callback) {
     if (this.size == 0) {
@@ -37,11 +38,11 @@ World.prototype.addPlayer = function(socket, name, callback) {
 
     callback();
 
-}
+};
 
 World.prototype.getPlayer = function(socket) {
     return this.players[socket.id];
-}
+};
 
 World.prototype.sendDataToPlayer = function(player) {
     var initialData = {
@@ -49,7 +50,7 @@ World.prototype.sendDataToPlayer = function(player) {
     };
 
     player.socket.emit('initialData', initialData);
-}
+};
 
 
 module.exports = World;

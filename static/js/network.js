@@ -3,9 +3,8 @@ function Network() {
     this.handleConnexion();
 }
 Network.prototype.handleConnexion = function() {
-    this.playerName;
     if (this.playerName == undefined) {
-        playerName = this.generatePlayerName(function(playerName) {
+        this.playerName = this.generatePlayerName(function(playerName) {
             this.playerName = playerName;
             localStorage.setItem('playerName', playerName);
             this.connect();
@@ -18,6 +17,11 @@ Network.prototype.handleConnexion = function() {
 Network.prototype.connect = function() {
     console.log("Logging in as " + this.playerName);
     this.socket.emit('login', this.playerName);
+
+    this.socket.on('initialData', function(initialData) {
+        game.startGame(initialData);
+    })
+
 }
 
 Network.prototype.generatePlayerName = function(callback) {

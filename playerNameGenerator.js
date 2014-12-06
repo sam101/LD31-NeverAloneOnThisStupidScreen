@@ -1,3 +1,5 @@
+"use strict";
+
 var adjectives = require('./data/adjectives.json');
 var animals = require('./data/animals.json');
 var colors = require('./data/colors.json');

@@ -6,7 +6,8 @@ exports.generate = function(width, height) {
     for (var i = 0; i < height; i++) {
         tiles[i] = [];
         for (var j = 0; j < width; j++) {
-            tiles[i][j] = new Tile(common.TILES.EMPTY_TILE);
+            tiles[i][j] = new Tile(common.TILES.EMPTY);
         }
     }
+    return tiles;
 }
