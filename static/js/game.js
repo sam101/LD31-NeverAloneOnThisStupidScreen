@@ -1,5 +1,6 @@
 "use strict";
 var game;
+
 function Game() {
     this.stage = new PIXI.Stage(0x0);
     this.stage.interactive = true;
