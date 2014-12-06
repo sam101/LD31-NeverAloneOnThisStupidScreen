@@ -26,7 +26,6 @@ function addPlayerToWorld(socket, name, callback) {
 }
 
 function handleNewPlayer(socket) {
-
     socket.on('generateName', function() {
         socket.emit('name', playerNameGenerator.generate());
     })
@@ -37,10 +36,14 @@ function handleNewPlayer(socket) {
             console.log("Add player " + name + " to world " + world.id + " (" + world.size + " players)");
 
             var player = world.getPlayer(socket);
+
+            socket.on('disconnect', function() {
+                world.removePlayer(player);
+            });
+
             socket.on('move', function(x, y) {
                 world.movePlayer(player, x, y);
             });
-
         });
     })
 
