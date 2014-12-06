@@ -11,7 +11,7 @@ function Player(data) {
     console.log("Position:" + this.data.x + "," + this.data.y);
     console.log("Position:" + this.position.x + "," + this.position.y);
 
-    this.nameText = new PIXI.Text(data.name.toUpperCase() + "(" + data.level + ")", {font:"9px pressstart", fill:"black"});
+    this.nameText = new PIXI.Text(data.name.toUpperCase() + "(" + data.level + ")", {font:"9px pressstart", fill:"white", dropShadow:true});
     this.nameText.anchor.x = 0.3;
     this.nameText.anchor.y = 1.5;
 
