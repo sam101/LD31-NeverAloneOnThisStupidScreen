@@ -1,3 +1,5 @@
+"use strict";
+
 function Other(data) {
     this.data = data;
 

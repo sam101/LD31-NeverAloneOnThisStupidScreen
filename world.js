@@ -3,6 +3,7 @@ var common = require('./common');
 var worldGenerator = require('./worldGenerator');
 
 var Player = require('./player');
+var Monster = require('./monster');
 
 function World(id) {
     this.id = id;
@@ -123,6 +124,18 @@ World.prototype.sendDataToPlayer = function(player) {
     }
 
     player.socket.emit('initialData', initialData);
+};
+
+World.prototype.addMonster = function(monster, x, y) {
+    if (!this.isAvailable(x,y)) {
+        console.log("Tried to add a monster at " + x + "," + y + " which is occupied.");
+        return;
+    }
+
+    this.entities[y][x] = monster;
+
+    monster.move(x,y);
+
 };
 
 module.exports = World;

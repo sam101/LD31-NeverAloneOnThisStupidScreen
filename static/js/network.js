@@ -1,3 +1,5 @@
+"use strict";
+
 function Network() {
     this.socket = io.connect();
     this.handleConnexion();

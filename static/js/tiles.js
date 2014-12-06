@@ -1,3 +1,4 @@
+"use strict";
 function Tiles(data) {
     PIXI.DisplayObjectContainer.call(this);
 
