@@ -89,8 +89,15 @@ World.prototype.getPlayer = function(socket) {
 World.prototype.sendDataToPlayer = function(player) {
     var initialData = {
         tiles: this.tiles,
-        player: player.data
+        player: player.data,
+        players: []
     };
+
+    for (var key in this.players) {
+        if (this.players[key] != player) {
+            initialData.players.push(this.players[key].data);
+        }
+    }
 
     player.socket.emit('initialData', initialData);
 };

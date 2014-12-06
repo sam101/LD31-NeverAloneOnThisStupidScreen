@@ -10,6 +10,14 @@ function World(initialData) {
     this.player = new Player(initialData.player);
     this.addChild(this.player);
 
+    this.players = {};
+
+    var players = initialData.players;
+    for (var i = 0; i < players.length; i++) {
+        this.players[players.name] = new Other(players[i]);
+        this.addChild(this.players[players.name]);
+    }
+
 }
 
 World.prototype = Object.create(PIXI.DisplayObjectContainer.prototype);

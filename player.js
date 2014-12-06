@@ -11,6 +11,7 @@ function Player(socket, name, world) {
 
     this.data.name = name;
     this.data.sprite = 0;
+    this.data.level = 1;
 
     this.generateInitialPosition();
 }
@@ -26,6 +27,6 @@ Player.prototype.generateInitialPosition = function() {
 Player.prototype.move = function(x, y) {
     this.data.x = x;
     this.data.y = y;
-}
+};
 
 module.exports = Player;

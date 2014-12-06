@@ -20,7 +20,6 @@ function findAvailableWorld(socket) {
 
 function addPlayerToWorld(socket, name, callback) {
     var world = findAvailableWorld(socket);
-    console.log("Add player " + name + " to world " + world.id + "( " + world.size + " players)");
     worldsForSocket[socket] = world;
     world.addPlayer(socket, name, callback);
 }
@@ -34,6 +33,8 @@ function handleNewPlayer(socket) {
     socket.on('login', function(name) {
         addPlayerToWorld(socket, name, function(err) {
             var world = worldsForSocket[socket];
+            console.log("Add player " + name + " to world " + world.id + " (" + world.size + " players)");
+
             var player = world.getPlayer(socket);
             socket.on('move', function(x, y) {
                 world.movePlayer(player, x, y);
