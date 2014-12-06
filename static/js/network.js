@@ -30,6 +30,13 @@ Network.prototype.connect = function() {
         }
     });
 
+    this.socket.on('removePlayer', function(name) {
+        if (game.isLaunched) {
+            world.removePlayer(name);
+        }
+    });
+
+
 }
 
 Network.prototype.generatePlayerName = function(callback) {

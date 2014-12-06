@@ -15,7 +15,9 @@ common.sprites = {
 
 
 common.monsterSprites = {
-
+    0: {
+        texture: PIXI.Texture.fromImage("res/monster0.png")
+    }
 };
 
 common.tiles = {

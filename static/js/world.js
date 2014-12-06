@@ -32,6 +32,13 @@ World.prototype.updatePlayerData = function(playerData) {
     }
 }
 
+World.prototype.removePlayer = function(name) {
+    if (this.players.hasOwnProperty(name)) {
+        this.removeChild(this.players[name]);
+        delete this.players[name];
+    }
+};
+
 World.prototype.isAvailable = function(x, y) {
     if (! this.tiles.tiles[y][x].passable) {
         return false;

@@ -1,5 +1,6 @@
 "use strict";
 var common = require('./common');
+var tools = require('./tools');
 var worldGenerator = require('./worldGenerator');
 
 var Player = require('./player');
@@ -13,6 +14,7 @@ function World(id) {
     this.players = {};
     this.playersBySocket = {};
     this.monsters = {};
+    this.monstersInWorld = 0;
     this.entities = this.generateEntitiesTab();
 
     console.log("Just built a world with id " + id + "(" + this.width + "," + this.height + ")");
@@ -132,8 +134,29 @@ World.prototype.sendDataToPlayer = function(player) {
     player.socket.emit('initialData', initialData);
 };
 
+World.prototype.step = function(n) {
+    if (n % 10 == 0) {
+        this.checkMonsterPopulation();
+    }
+};
+
+World.prototype.checkMonsterPopulation = function() {
+    if (this.monstersInWorld >= common.MONSTER_PER_PLAYERS * this.size) {
+        return;
+    }
+    if (tools.randInt(0, 100) <= common.MONSTER_APPARITION_PROBABILITY) {
+        this.generateMonster();
+    }
+};
+
+World.prototype.generateMonster = function() {
+    var monster = new Monster(this);
+    this.monsters[monster.id] = monster;
+    console.log("Generated a new monster");
+};
+
 World.prototype.addMonster = function(monster, x, y) {
-    if (!this.isAvailable(x,y)) {
+    if (!this.isTileAvailable(x,y)) {
         console.log("Tried to add a monster at " + x + "," + y + " which is occupied.");
         return;
     }

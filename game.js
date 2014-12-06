@@ -1,4 +1,5 @@
 "use strict";
+var common = require('./common');
 var playerNameGenerator = require('./playerNameGenerator');
 var tools = require('./tools');
 
@@ -17,6 +18,13 @@ function findAvailableWorld(socket) {
     var newWorld = new World(worlds.length);
     worlds.push(newWorld);
     return newWorld;
+}
+var frame = 0;
+function step() {
+    for (var i = 0; i < worlds.length; i++) {
+        worlds[i].step(frame);
+    }
+    frame++;
 }
 
 function addPlayerToWorld(socket, name, callback) {
@@ -48,6 +56,8 @@ function handleNewPlayer(socket) {
     })
 
 }
+
+setInterval(step, common.STEP_INTERVAL);
 
 exports.use = function(io) {
     io.sockets.on('connection', handleNewPlayer);
