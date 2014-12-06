@@ -7,17 +7,19 @@ function Game() {
 
     this.renderer = PIXI.autoDetectRenderer(common.RENDER_WIDTH, common.RENDER_HEIGHT);
     document.body.appendChild(this.renderer.view);
+
+
     requestAnimationFrame(render);
 }
 
 Game.prototype.draw = function() {
     this.renderer.render(this.stage);
 
-    requestAnimFrame(render);
 }
 
 function render() {
     game.draw();
+    requestAnimFrame(render);
 }
 
 var game = new Game();

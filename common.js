@@ -3,6 +3,8 @@ module.exports = {
     HEIGHT: 22,
     PLAYERS_PER_WORLD: 10,
     TILES: {
-        EMPTY:0
+        EMPTY: {
+            passable:false
+        }
     }
 }
