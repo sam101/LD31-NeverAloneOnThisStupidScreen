@@ -2,6 +2,7 @@
 var common = {
     RENDER_WIDTH: 1280,
     RENDER_HEIGHT: 720,
+    FRAME_TIME: 20,
     TILE_SIZE: 32
 };
 

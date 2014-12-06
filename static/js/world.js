@@ -1,4 +1,5 @@
 "use strict";
+var world;
 
 function World(initialData) {
     PIXI.DisplayObjectContainer.call(this);
@@ -13,4 +14,15 @@ function World(initialData) {
 
 World.prototype = Object.create(PIXI.DisplayObjectContainer.prototype);
 
-var world;
+World.prototype.isAvailable = function(x, y) {
+    if (! this.tiles.tiles[y][x].passable) {
+        return false;
+    }
+    return true;
+};
+
+World.prototype.frame = function(n) {
+    if (n % 4 == 0) {
+        this.player.frame();
+    }
+}
