@@ -65,7 +65,7 @@ World.prototype.addPlayer = function(socket, name, callback) {
     this.players[socket.id] = player;
 
     this.sendDataToPlayer(player);
-
+    this.sendPlayerDataToPlayers(player);
     callback();
 
 };
@@ -76,6 +76,9 @@ World.prototype.movePlayer = function(player, x, y) {
         player.move(x,y);
         this.entities[player.data.y][player.data.x] = player;
         console.log("Player " + player.name + " has moved to " + x + "," + y);
+
+        this.sendPlayerDataToPlayers(player);
+
     }
     else {
         console.log("Refused move to " + x + "," + y + " for " + player.name);
@@ -87,10 +90,23 @@ World.prototype.removePlayer = function(player) {
     this.size--;
     delete this.entities[player.data.y][player.data.x];
     delete this.players[player.socket.id];
+
+    for (var key in this.players) {
+        this.players[key].socket.emit('removePlayer', player.name);
+    }
+
 };
 
 World.prototype.getPlayer = function(socket) {
     return this.players[socket.id];
+};
+
+World.prototype.sendPlayerDataToPlayers = function(player) {
+    for (var key in this.players) {
+        if (this.players[key] != player) {
+            this.players[key].socket.emit('playerData', player.data);
+        }
+    }
 };
 
 World.prototype.sendDataToPlayer = function(player) {

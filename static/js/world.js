@@ -14,13 +14,23 @@ function World(initialData) {
 
     var players = initialData.players;
     for (var i = 0; i < players.length; i++) {
-        this.players[players.name] = new Other(players[i]);
-        this.addChild(this.players[players.name]);
+        this.players[players[i].name] = new Other(players[i]);
+        this.addChild(this.players[players[i].name]);
     }
 
 }
 
 World.prototype = Object.create(PIXI.DisplayObjectContainer.prototype);
+
+World.prototype.updatePlayerData = function(playerData) {
+    if (this.players.hasOwnProperty(playerData.name)) {
+        this.players[playerData.name].update(playerData);
+    }
+    else {
+        this.players[playerData.name] = new Other(playerData);
+        this.addChild(this.players[playerData.name]);
+    }
+}
 
 World.prototype.isAvailable = function(x, y) {
     if (! this.tiles.tiles[y][x].passable) {

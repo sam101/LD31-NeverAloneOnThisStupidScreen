@@ -15,6 +15,11 @@ function Other(data) {
 
 Other.prototype = Object.create(PIXI.Sprite.prototype);
 
+Other.prototype.update = function(data) {
+    this.data = data;
+    this.calculatePosition();
+}
+
 Other.prototype.calculatePosition = function() {
     this.position.x = this.data.x * common.TILE_SIZE;
     this.position.y = this.data.y * common.TILE_SIZE;

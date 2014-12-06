@@ -22,6 +22,12 @@ Network.prototype.connect = function() {
         game.startGame(initialData);
     })
 
+    this.socket.on('playerData', function(playerData) {
+        if (game.isLaunched) {
+            world.updatePlayerData(playerData);
+        }
+    });
+
 }
 
 Network.prototype.generatePlayerName = function(callback) {
