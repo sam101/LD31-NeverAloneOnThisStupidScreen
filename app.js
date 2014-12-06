@@ -1,9 +1,11 @@
 "use strict";
 var argv = require('optimist').argv;
 var express =require('express');
+var serveStatic = require('serve-static');
 
 var app = express();
 app.set('view engine', 'jade');
+app.locals.pretty = true
 
 var http = require('http').Server(app);
 
@@ -15,9 +17,10 @@ app.get('/', function(req, res) {
     res.render('index', {env: env});
 });
 
+app.use(serveStatic('static'));
 
 app.use('*', function(req, res) {
-    res.send('404 not found', 404);
+    res.status(404).send('404 not found');
 });
 
 http.listen(argv.port || 8080);
