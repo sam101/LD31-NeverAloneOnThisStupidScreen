@@ -24,13 +24,13 @@ World.prototype.generate = function() {
     this.tiles = worldGenerator.generate(this.width, this.height);
 }
 
-World.prototype.addPlayer = function(socket, gameid, callback) {
+World.prototype.addPlayer = function(socket, name, callback) {
     if (this.size == 0) {
         this.generate();
     }
     this.size++;
 
-    var player = new Player(socket, gameid, this);
+    var player = new Player(socket, name, this);
     this.players[socket.id] = player;
 
     this.sendDataToPlayer(player);

@@ -1,6 +1,6 @@
 
-function Player(socket, gameid, world) {
-    this.gameid = gameid;
+function Player(socket, name, world) {
+    this.name = name;
     this.socket = socket;
     this.world = world;
 }

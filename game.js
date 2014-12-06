@@ -1,5 +1,7 @@
 "use strict";
+var playerNameGenerator = require('./playerNameGenerator');
 var tools = require('./tools');
+
 var World = require('./world');
 
 var worlds = [new World(0)];
@@ -16,16 +18,21 @@ function findAvailableWorld(socket) {
     return worlds[worlds.length - 1];
 }
 
-function addPlayerToWorld(socket, gameid, callback) {
+function addPlayerToWorld(socket, name, callback) {
     var world = findAvailableWorld(socket);
-    console.log("Add player " + gameid + " to world " + world.id + "( " + world.size + " players)");
+    console.log("Add player " + name + " to world " + world.id + "( " + world.size + " players)");
     worldsForSocket[socket] = world;
-    world.addPlayer(socket, gameid, callback);
+    world.addPlayer(socket, name, callback);
 }
 
 function handleNewPlayer(socket) {
-    socket.on('login', function(gameid) {
-        addPlayerToWorld(socket, gameid, function(err) {
+
+    socket.on('generateName', function() {
+        socket.emit('name', playerNameGenerator.generate());
+    })
+
+    socket.on('login', function(name) {
+        addPlayerToWorld(socket, name, function(err) {
             var world = worldsForSocket[socket];
             var player = world.getPlayer(socket);
             socket.on('move', function(x, y) {

@@ -13,7 +13,11 @@ function Network() {
 }
 
 Network.prototype.generateGameId = function(callback) {
-    callback.call(this, 'pinkraspberry');
+    var self = this;
+    this.socket.emit('generateName');
+    this.socket.on('name', function(name) {
+        callback.call(self, name);
+    })
 }
 
 
