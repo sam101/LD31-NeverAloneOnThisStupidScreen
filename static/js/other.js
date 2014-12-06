@@ -6,7 +6,7 @@ function Other(data) {
     var textureData = common.sprites[data.sprite];
     PIXI.Sprite.call(this, textureData.texture);
 
-    this.nameText = new PIXI.Text(data.name.toUpperCase() + "(" + data.level + ")", {font:"9px pressstart", fill:"black",, fill:"white", dropShadow:true});
+    this.nameText = new PIXI.Text(data.name.toUpperCase() + "(" + data.level + ")", {font:"9px pressstart", fill:"white", dropShadow:true});
     this.nameText.anchor.x = 0.3;
     this.nameText.anchor.y = 1.5;
 
