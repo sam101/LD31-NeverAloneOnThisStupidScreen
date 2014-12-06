@@ -152,7 +152,9 @@ World.prototype.checkMonsterPopulation = function() {
 World.prototype.generateMonster = function() {
     var monster = new Monster(this);
     this.monsters[monster.id] = monster;
-    console.log("Generated a new monster");
+    console.log("Generated a new monster with id " + monster.id);
+
+    this.sendMonsterData(monster);
 };
 
 World.prototype.addMonster = function(monster, x, y) {
@@ -162,9 +164,16 @@ World.prototype.addMonster = function(monster, x, y) {
     }
 
     this.entities[y][x] = monster;
-
     monster.move(x,y);
 
+    this.sendMonsterData(monster);
 };
+
+World.prototype.sendMonsterData = function(monster) {
+    for (var key in this.players) {
+        this.players[key].socket.emit('monsterData', monster.data);
+    }
+};
+
 
 module.exports = World;

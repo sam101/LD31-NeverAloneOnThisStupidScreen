@@ -5,8 +5,8 @@ var tools = require('./tools');
 var id = 0;
 
 function Monster(world) {
-    this.id = id++;
     this.data = {};
+    this.data.id = this.id = id++;
     this.data.sprite = 0;
     this.world = world;
     this.generateInitialPosition();

@@ -1,4 +1,6 @@
 function Monster(data) {
+    this.data = data;
+
     var textureData = common.monsterSprites[data.sprite];
     PIXI.Sprite.call(this, textureData.texture);
 

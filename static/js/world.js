@@ -14,8 +14,19 @@ function World(initialData) {
 
     var players = initialData.players;
     for (var i = 0; i < players.length; i++) {
-        this.players[players[i].name] = new Other(players[i]);
-        this.addChild(this.players[players[i].name]);
+        var player = players[i];
+        this.players[player.name] = new Other(player);
+        this.addChild(this.players[player.name]);
+    }
+
+    this.monsters = {};
+    var monsters = initialData.monsters;
+
+
+    for (var i = 0; i < monsters.length; i++) {
+        var monster = monsters[i];
+        this.monsters[monster.id] = new Monster(monster);
+        this.addChild(this.monsters[monster.id]);
     }
 
 }
@@ -30,12 +41,23 @@ World.prototype.updatePlayerData = function(playerData) {
         this.players[playerData.name] = new Other(playerData);
         this.addChild(this.players[playerData.name]);
     }
-}
+};
 
 World.prototype.removePlayer = function(name) {
     if (this.players.hasOwnProperty(name)) {
         this.removeChild(this.players[name]);
         delete this.players[name];
+    }
+};
+
+World.prototype.updateMonster = function(monsterData) {
+    if (this.monsters.hasOwnProperty(monsterData.id)) {
+        var monster = this.monsters[monsterData.id];
+        monster.update(monsterData);
+    }
+    else {
+        this.monsters[monsterData.id] = new Monster(monsterData);
+        this.addChild(this.monsters[monsterData.id]);
     }
 };
 

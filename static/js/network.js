@@ -36,6 +36,12 @@ Network.prototype.connect = function() {
         }
     });
 
+    this.socket.on('monsterData', function(monsterData) {
+        if (game.isLaunched) {
+            world.updateMonster(monsterData);
+        }
+    });
+
 
 }
 
