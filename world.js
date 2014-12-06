@@ -54,8 +54,17 @@ World.prototype.addPlayerToPosition = function(player, x, y) {
 
 World.prototype.generate = function() {
     console.log("Currently generating the world...");
+    this.entities = this.generateEntitiesTab();
+    this.monsters = [];
+    this.monstersInWorld = 0;
     this.tiles = worldGenerator.generate(this.width, this.height);
+
+    for (var i = 0; i < common.INITIAL_MONSTERS; i++) {
+        this.generateMonster();
+    }
+
     console.log("World has been generated.");
+
 };
 
 World.prototype.addPlayer = function(socket, name, callback) {
@@ -135,7 +144,7 @@ World.prototype.sendDataToPlayer = function(player) {
 };
 
 World.prototype.step = function(n) {
-    if (n % 10 == 0) {
+    if (n % 5 == 0) {
         this.checkMonsterPopulation();
     }
 };
@@ -153,7 +162,7 @@ World.prototype.generateMonster = function() {
     var monster = new Monster(this);
     this.monsters[monster.id] = monster;
     console.log("Generated a new monster with id " + monster.id);
-
+    this.monstersInWorld++;
     this.sendMonsterData(monster);
 };
 
