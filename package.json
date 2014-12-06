@@ -1,0 +1,27 @@
+{
+  "name": "LD31",
+  "version": "1.0.0",
+  "description": "LD31 ====",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.10.4",
+    "jade": "^1.8.1",
+    "optimist": "^0.6.1",
+    "socket.io": "^1.2.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sam101/LD31.git"
+  },
+  "author": "Samuel Lepetit <lepetit.samuel@gmail.com>",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/sam101/LD31/issues"
+  },
+  "homepage": "https://github.com/sam101/LD31"
+}
