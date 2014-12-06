@@ -7,16 +7,24 @@ function Player(socket, name, world) {
     this.socket = socket;
     this.world = world;
 
+    this.data = {};
+
+    this.data.sprite = 0;
+
     this.generateInitialPosition();
 }
 
 Player.prototype.generateInitialPosition = function() {
-    var xLeftBoundary = common.WIDTH / 4;
-    var xRightBoundary = common.WIDTH / 4 * 3;
-    var yTopBoundary = common.HEIGHT / 4;
-    var yBottomBoundary = common.HEIGHT / 4 * 3;
+    do {
+        var x = tools.randInt(0, this.world.width);
+        var y = tools.randInt(0, this.world.height);
+    } while (! this.world.isTileAvailable(x, y));
+    this.world.addPlayerToPosition(this, x, y);
+};
 
-    var x = tools.randInt(xLeftBoundary, xRightBoundary);
+Player.prototype.move = function(x, y) {
+    this.data.x = x;
+    this.data.y = y;
 }
 
 module.exports = Player;

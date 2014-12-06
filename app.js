@@ -1,4 +1,5 @@
 "use strict";
+
 var game = require('./game');
 
 var argv = require('optimist').argv;

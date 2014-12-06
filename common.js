@@ -4,7 +4,7 @@ module.exports = {
     HEIGHT: 22,
     PLAYERS_PER_WORLD: 10,
     FILL_PROBABILITY: 25,
-    GENERATIONS: 8,
+    GENERATIONS: 7,
     TILES: {
         EMPTY: 0,
         WALL: 1

@@ -31,6 +31,24 @@ World.prototype.isFull = function() {
     return this.size >= common.PLAYERS_PER_WORLD;
 };
 
+World.prototype.isTileAvailable = function(x, y) {
+    if (!this.tiles[y][x].passable) {
+        return false;
+    }
+    if (this.entities[y][x] != undefined) {
+        return false;
+    }
+    return true;
+}
+
+World.prototype.addPlayerToPosition = function(player, x, y) {
+    if (this.entities[y][x] != undefined) {
+        throw "Don't add a player to an existing position.";
+    }
+    this.entities[y][x] = player;
+    player.move(x, y);
+}
+
 World.prototype.generate = function() {
     console.log("Currently generating the world...");
     this.tiles = worldGenerator.generate(this.width, this.height);
@@ -58,11 +76,11 @@ World.prototype.getPlayer = function(socket) {
 
 World.prototype.sendDataToPlayer = function(player) {
     var initialData = {
-        tiles: this.tiles
+        tiles: this.tiles,
+        player: player.data
     };
 
     player.socket.emit('initialData', initialData);
 };
-
 
 module.exports = World;

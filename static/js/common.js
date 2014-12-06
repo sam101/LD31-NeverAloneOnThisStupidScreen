@@ -5,6 +5,18 @@ var common = {
     TILE_SIZE: 32
 };
 
+
+common.sprites = {
+    0: {
+        texture: PIXI.Texture.fromImage("res/player0.png")
+    }
+};
+
+
+common.monsterSprites = {
+
+};
+
 common.tiles = {
     0: {
         texture: PIXI.Texture.fromImage("res/empty.png"),

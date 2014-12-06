@@ -30,8 +30,12 @@ Game.prototype.sizeContainer = function() {
 
 Game.prototype.startGame = function(initialData) {
     console.log("Let's start the game !");
+
     this.tiles = new Tiles(initialData.tiles);
     this.container.addChild(this.tiles);
+
+    this.player = new Player(initialData.player);
+    this.container.addChild(this.player);
 };
 
 Game.prototype.draw = function() {
