@@ -10,6 +10,12 @@ function Player(data) {
 
     console.log("Position:" + this.data.x + "," + this.data.y);
     console.log("Position:" + this.position.x + "," + this.position.y);
+
+    this.nameText = new PIXI.Text(data.name.toUpperCase(), {font:"9px pressstart", fill:"black"});
+    this.nameText.anchor.x = 0.3;
+    this.nameText.anchor.y = 1.5;
+
+    this.addChild(this.nameText);
 }
 Player.prototype = Object.create(PIXI.Sprite.prototype);
 

@@ -12,7 +12,11 @@ exports.generate = function() {
     var adjective = adjectives[tools.randInt(0, adjectives.length)];
 
     var number = tools.randInt(10, 99);
-
-    return adjective + color + animal + number;
+    if (tools.randInt(0, 100) < 50) {
+        return  color + animal + number;
+    }
+    else {
+        return adjective + animal + number;
+    }
 }
 
