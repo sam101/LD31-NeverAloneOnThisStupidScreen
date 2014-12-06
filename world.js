@@ -147,6 +147,10 @@ World.prototype.step = function(n) {
     if (n % 5 == 0) {
         this.checkMonsterPopulation();
     }
+    for (var key in this.monsters) {
+        this.monsters[key].step();
+        this.sendMonsterData(this.monsters[key]);
+    }
 };
 
 World.prototype.checkMonsterPopulation = function() {
@@ -172,8 +176,8 @@ World.prototype.addMonster = function(monster, x, y) {
         return;
     }
 
-    this.entities[y][x] = monster;
     monster.move(x,y);
+    this.entities[y][x] = monster;
 
     this.sendMonsterData(monster);
 };

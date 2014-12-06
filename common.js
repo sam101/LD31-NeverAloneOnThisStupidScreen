@@ -8,6 +8,14 @@ module.exports = {
     INITIAL_MONSTERS:4,
     MONSTER_APPARITION_PROBABILITY: 30,
     FILL_PROBABILITY: 26,
+    DIRECTIONS: {
+        TOP:0,
+        BOTTOM:1,
+        LEFT:2,
+        RIGHT:3,
+        MAX:4
+    },
+    MONSTER_DIRECTION_CHANGE_PROBABILITY: 25,
     GENERATIONS: 6,
     TILES: {
         EMPTY: 0,
