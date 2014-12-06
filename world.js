@@ -112,9 +112,10 @@ World.prototype.sendPlayerDataToPlayers = function(player) {
 
 World.prototype.sendDataToPlayer = function(player) {
     var initialData = {
-        tiles: this.tiles,
+        monsters: [],
         player: player.data,
-        players: []
+        players: [],
+        tiles: this.tiles
     };
 
     for (var key in this.players) {
@@ -122,6 +123,11 @@ World.prototype.sendDataToPlayer = function(player) {
             initialData.players.push(this.players[key].data);
         }
     }
+
+    for (var key in this.monsters) {
+            initialData.monsters.push(this.monsters[key].data);
+    }
+
 
     player.socket.emit('initialData', initialData);
 };

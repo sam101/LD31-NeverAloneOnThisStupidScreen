@@ -36,6 +36,12 @@ World.prototype.isAvailable = function(x, y) {
     if (! this.tiles.tiles[y][x].passable) {
         return false;
     }
+    for (var key in this.players) {
+        var player = this.players[key];
+        if (player.data.x == x && player.data.y == y) {
+            return false;
+        }
+    }
     return true;
 };
 
