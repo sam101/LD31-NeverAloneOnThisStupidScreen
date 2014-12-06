@@ -37,8 +37,6 @@ function handleNewPlayer(socket) {
 
 }
 
-
-
 exports.use = function(io) {
     io.sockets.on('connection', handleNewPlayer);
 };
