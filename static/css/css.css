@@ -1,6 +1,7 @@
 body {
     margin: 0;
     padding: 0;
+    background-color:black;
 }
 
 html, body {
@@ -10,6 +11,7 @@ html, body {
 
 canvas {
     display:block;
+    text-align:center;
 }
 
 @font-face {

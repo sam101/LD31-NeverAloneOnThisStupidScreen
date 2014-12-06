@@ -23,15 +23,15 @@ function Game() {
 }
 
 Game.prototype.sizeContainer = function() {
-    var currentWidthScaleRatio = window.innerWidth / common.RENDER_WIDTH;
-    var currentHeightScaleRatio = window.innerHeight / common.RENDER_HEIGHT;
+    var widthScaleRatio = window.innerWidth / common.RENDER_WIDTH;
+    var heightScaleRatio = window.innerHeight / common.RENDER_HEIGHT;
 
-    console.log(currentWidthScaleRatio + "," + currentHeightScaleRatio);
+    var scaleRatio = Math.min(widthScaleRatio, heightScaleRatio);
 
-    this.renderer.resize(window.innerWidth, window.innerHeight);
+    this.renderer.resize(common.RENDER_WIDTH * scaleRatio, common.RENDER_HEIGHT * scaleRatio);
 
-    this.container.scale.x = currentWidthScaleRatio;
-    this.container.scale.y = currentHeightScaleRatio;
+    this.container.scale.x = scaleRatio;
+    this.container.scale.y = scaleRatio;
 };
 
 Game.prototype.startGame = function(initialData) {
