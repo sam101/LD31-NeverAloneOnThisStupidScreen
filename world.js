@@ -12,8 +12,19 @@ function World(id) {
     this.players = {};
     this.playersBySocket = {};
     this.monsters = {};
+    this.entities = this.generateEntitiesTab();
 
     console.log("Just built a world with id " + id + "(" + this.width + "," + this.height + ")");
+}
+
+World.prototype.generateEntitiesTab = function() {
+    var tiles = [];
+
+    for (var i = 0; i < this.height; i++) {
+        tiles[i] = [];
+    }
+
+    return tiles;
 }
 
 World.prototype.isFull = function() {
@@ -23,6 +34,7 @@ World.prototype.isFull = function() {
 World.prototype.generate = function() {
     console.log("Currently generating the world...");
     this.tiles = worldGenerator.generate(this.width, this.height);
+    console.log("World has been generated.");
 };
 
 World.prototype.addPlayer = function(socket, name, callback) {

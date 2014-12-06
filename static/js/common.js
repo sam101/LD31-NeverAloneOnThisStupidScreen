@@ -7,8 +7,11 @@ var common = {
 
 common.tiles = {
     0: {
-        file: "res/empty.png",
         texture: PIXI.Texture.fromImage("res/empty.png"),
+        passable: true
+    },
+    1: {
+        texture: PIXI.Texture.fromImage("res/wall.png"),
         passable: false
     }
 };
