@@ -3,7 +3,8 @@ var mongoose = require('mongoose');
 
 var playerDataSchema = mongoose.Schema({
     name: String,
-    level: Number
+    level: Number,
+    sprite: Number
 });
 
 module.exports = mongoose.model('PlayerData', playerDataSchema);

@@ -26,7 +26,11 @@ common.expBar = PIXI.Texture.fromImage("res/expbar.png");
 common.sprites = {
     0: {
         texture: PIXI.Texture.fromImage("res/player0.png")
+    },
+    1: {
+        texture: PIXI.Texture.fromImage("res/player1.png")
     }
+
 };
 
 

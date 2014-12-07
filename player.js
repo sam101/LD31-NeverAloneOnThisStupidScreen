@@ -18,7 +18,7 @@ function Player(socket, name, world) {
     this.data = {};
 
     this.data.name = name;
-    this.data.sprite = tools.randInt(0, common.PLAYER_SPRITES);
+    this.data.sprite = 0;
     this.data.level = 1;
     this.data.hp = formula.hpForLevel(this.data.level);
     this.data.hpMax = formula.hpForLevel(this.data.level);
@@ -34,11 +34,13 @@ Player.prototype.load = function(callback) {
         if (err || playerData == undefined) {
             self.playerData = new PlayerData({
                 name: self.data.name,
-                level: 1
+                level: 1,
+                sprite: tools.randInt(0, common.PLAYER_SPRITES)
             });
         }
         else {
             self.playerData = playerData;
+            self.data.sprite = playerData.sprite != undefined ? playerData.sprite : tools.randInt(0, common.PLAYER_SPRITES);
             self.data.level = playerData.level;
         }
         return callback();
@@ -47,6 +49,7 @@ Player.prototype.load = function(callback) {
 
 Player.prototype.save = function(){
     var self = this;
+    this.playerData.sprite = this.data.sprite;
     this.playerData.level = this.data.level;
     this.playerData.save(function(err) {
         if (err) {
