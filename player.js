@@ -32,6 +32,9 @@ Player.prototype.addExp = function(expToAdd) {
     if (this.data.exp >= this.data.expToNextLevel) {
         this.data.exp -= this.data.expToNextLevel;
         this.data.level++;
+        console.log("Level up for " + this.data.name + " to " + this.data.level);
+        this.data.hp = formula.hpForLevel(this.data.level);
+        this.data.hpMax = formula.hpForLevel(this.data.level);
         this.data.expToNextLevel = formula.expForLevel(this.data.level);
     }
     this.world.sendPlayerDataToPlayers(this);

@@ -2,6 +2,9 @@
 
 var game = require('./game');
 
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/ld31');
+
 var argv = require('optimist').argv;
 var express =require('express');
 var serveStatic = require('serve-static');

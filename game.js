@@ -35,35 +35,39 @@ function addPlayerToWorld(socket, name, callback) {
 
 function handleNewPlayer(socket) {
     socket.on('generateName', function() {
-        socket.emit('name', playerNameGenerator.generate());
+        playerNameGenerator.generate(function(name) {
+            socket.emit('name', name);
+        });
     })
 
     socket.on('login', function(name) {
-        if (! playerNameGenerator.check(name)) {
-            console.log("Wanted name " + name + " is invalid");
-            socket.emit('wrongUsername');
-            return;
-        }
-        addPlayerToWorld(socket, name, function(err) {
-            var world = worldsForSocket[socket];
-            console.log("Add player " + name + " to world " + world.id + " (" + world.size + " players)");
+        playerNameGenerator.check(name, function(ok) {
+            if (!ok) {
+                console.log("Tried invalid name " + name);
+                socket.emit('wrongUsername');
+                return;
+            }
+            addPlayerToWorld(socket, name, function(err) {
+                var world = worldsForSocket[socket];
+                console.log("Add player " + name + " to world " + world.id + " (" + world.size + " players)");
 
-            var player = world.getPlayer(socket);
+                var player = world.getPlayer(socket);
 
-            socket.on('disconnect', function() {
-                if (player.inWorld) {
-                    world.removePlayer(player);
-                }
+                socket.on('disconnect', function() {
+                    if (player.inWorld) {
+                        world.removePlayer(player);
+                    }
+                });
+
+                socket.on('move', function(x, y) {
+                    world.movePlayer(player, x, y);
+                });
+
+                socket.on('shoot', function() {
+                    world.shoot(player);
+                });
             });
-
-            socket.on('move', function(x, y) {
-                world.movePlayer(player, x, y);
-            });
-
-            socket.on('shoot', function() {
-               world.shoot(player);
-            });
-        });
+        })
     })
 
 }

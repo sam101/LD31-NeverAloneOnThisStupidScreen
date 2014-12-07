@@ -13,7 +13,7 @@ exports.expForMonsterKilling = function(level) {
 };
 
 exports.hpForLevel = function(level) {
-    return 25 + level * 5;
+    return 50 + level * 25;
 };
 
 exports.hpForMonster = function(level) {
