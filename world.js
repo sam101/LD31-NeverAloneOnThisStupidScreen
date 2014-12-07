@@ -3,8 +3,9 @@ var common = require('./common');
 var tools = require('./tools');
 var worldGenerator = require('./worldGenerator');
 
-var Player = require('./player');
+var Laser = require('./laser');
 var Monster = require('./monster');
+var Player = require('./player');
 
 function World(id) {
     this.id = id;
@@ -13,8 +14,12 @@ function World(id) {
     this.size = 0;
     this.players = {};
     this.playersBySocket = {};
+
     this.monsters = {};
     this.monstersInWorld = 0;
+
+    this.lasers = {};
+
     this.entities = this.generateEntitiesTab();
 
     console.log("Just built a world with id " + id + "(" + this.width + "," + this.height + ")");
@@ -57,6 +62,7 @@ World.prototype.generate = function() {
     this.entities = this.generateEntitiesTab();
     this.monsters = [];
     this.monstersInWorld = 0;
+    this.lasers = {};
     this.tiles = worldGenerator.generate(this.width, this.height);
 
     for (var i = 0; i < common.INITIAL_MONSTERS; i++) {
@@ -144,12 +150,18 @@ World.prototype.sendDataToPlayer = function(player) {
 };
 
 World.prototype.step = function(n) {
-    if (n % 5 == 0) {
+    if (n % 10 == 0) {
         this.checkMonsterPopulation();
     }
-    for (var key in this.monsters) {
-        this.monsters[key].step();
-        this.sendMonsterData(this.monsters[key]);
+    if (n % 2 == 0) {
+        for (var key in this.monsters) {
+            this.monsters[key].step();
+            this.sendMonsterData(this.monsters[key]);
+        }
+    }
+
+    for (var key in this.lasers) {
+        this.lasers[key].step();
     }
 };
 
@@ -176,7 +188,9 @@ World.prototype.addMonster = function(monster, x, y) {
         return;
     }
 
-    monster.move(x,y);
+    monster.data.x = x;;
+    monster.data.y = y;
+
     this.entities[y][x] = monster;
 
     this.sendMonsterData(monster);
@@ -185,6 +199,41 @@ World.prototype.addMonster = function(monster, x, y) {
 World.prototype.sendMonsterData = function(monster) {
     for (var key in this.players) {
         this.players[key].socket.emit('monsterData', monster.data);
+    }
+};
+
+World.prototype.shoot = function(origin) {
+    if (!origin.canFire) {
+        return;
+    }
+    this.addLaser(origin.data.x - 1, origin.data.y, common.DIRECTIONS.LEFT);
+    this.addLaser(origin.data.x + 1, origin.data.y, common.DIRECTIONS.RIGHT);
+    this.addLaser(origin.data.x, origin.data.y - 1, common.DIRECTIONS.TOP);
+    this.addLaser(origin.data.x, origin.data.y + 1, common.DIRECTIONS.BOTTOM);
+
+    origin.shoot();
+};
+
+World.prototype.addLaser = function(x, y, direction) {
+    console.log("Firing laser in " + x + "," + y);
+    if (this.isTileAvailable(x, y)) {
+        var laser = new Laser(this, x, y, direction);
+        this.lasers[laser.data.id] = laser;
+        this.sendLaserData(laser);
+    }
+};
+
+World.prototype.removeLaser = function(laser) {
+    delete this.lasers[laser.data.id];
+};
+
+World.prototype.shootEntity = function(laser, x, y) {
+
+}
+
+World.prototype.sendLaserData = function(laser) {
+    for (var key in this.players) {
+        this.players[key].socket.emit('laserData', laser.data);
     }
 };
 

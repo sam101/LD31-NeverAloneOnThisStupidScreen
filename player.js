@@ -8,6 +8,9 @@ function Player(socket, name, world) {
     this.socket = socket;
     this.world = world;
 
+    this.canFire = true;
+    this.missilesFired = 0;
+
     this.data = {};
 
     this.data.name = name;
@@ -44,6 +47,18 @@ Player.prototype.generateInitialPosition = function() {
 Player.prototype.move = function(x, y) {
     this.data.x = x;
     this.data.y = y;
+};
+
+Player.prototype.shoot = function() {
+    this.missilesFired = 4;
+    this.canFire = false;
+}
+
+Player.prototype.removeShoot = function() {
+    this.missilesFired--;
+    if (this.missilesFired == 0) {
+        this.canFire = true;
+    }
 };
 
 module.exports = Player;

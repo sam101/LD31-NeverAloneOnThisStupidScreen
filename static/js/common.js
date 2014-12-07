@@ -6,6 +6,16 @@ var common = {
     TILE_SIZE: 32
 };
 
+common.directions = {
+    TOP:0,
+    BOTTOM:1,
+    LEFT:2,
+    RIGHT:3,
+    MAX:4
+};
+
+common.laser = PIXI.Texture.fromImage("res/laser.png");
+
 common.emptyBar = PIXI.Texture.fromImage("res/emptybar.png");
 common.lifeBar = PIXI.Texture.fromImage("res/lifebar.png");
 common.expBar = PIXI.Texture.fromImage("res/expbar.png");

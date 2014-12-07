@@ -10,6 +10,9 @@ function Monster(world) {
     this.data.sprite = 0;
     this.world = world;
 
+    this.canFire = true;
+    this.missilesFired = 0;
+
     this.generateInitialPosition();
     this.direction = this.generateDirection();
 }
@@ -53,11 +56,27 @@ Monster.prototype.generateDirection  = function() {
 
 Monster.prototype.move = function(x,y) {
     if (this.world.isTileAvailable(x, y)) {
+        this.world.entities[this.data.y][this.data.x] = undefined;
         this.data.x = x;
         this.data.y = y;
+        this.world.entities[this.data.y][this.data.x] = this;
         return true;
     }
     return false;
 };
+
+
+Monster.prototype.shoot = function() {
+    this.missilesFired = 4;
+    this.canFire = false;
+}
+
+Monster.prototype.removeShoot = function() {
+    this.missilesFired--;
+    if (this.missilesFired == 0) {
+        this.canFire = true;
+    }
+};
+
 
 module.exports = Monster;

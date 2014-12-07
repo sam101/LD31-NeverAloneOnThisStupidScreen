@@ -57,6 +57,10 @@ function handleNewPlayer(socket) {
             socket.on('move', function(x, y) {
                 world.movePlayer(player, x, y);
             });
+
+            socket.on('shoot', function() {
+               world.shoot(player);
+            });
         });
     })
 

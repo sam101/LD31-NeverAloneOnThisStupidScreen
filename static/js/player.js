@@ -51,6 +51,13 @@ Player.prototype.frame = function() {
     else if (keys.indexOf('right') != -1) {
         this.move(1, 0);
     }
+    if (keys.indexOf('enter') != -1) {
+        this.shoot();
+    }
+};
+
+Player.prototype.shoot = function() {
+    network.socket.emit('shoot');
 };
 
 Player.prototype.move = function(x, y) {

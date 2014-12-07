@@ -2,7 +2,7 @@
 module.exports = {
     WIDTH:40,
     HEIGHT: 22,
-    STEP_INTERVAL: 200,
+    STEP_INTERVAL: 100,
     PLAYERS_PER_WORLD: 6,
     MONSTER_PER_PLAYERS: 5,
     INITIAL_MONSTERS:4,

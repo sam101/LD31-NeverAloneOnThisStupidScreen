@@ -10,6 +10,8 @@ function World(initialData) {
     this.player = new Player(initialData.player);
     this.addChild(this.player);
 
+    this.lasers = {};
+
     this.players = {};
 
     var players = initialData.players;
@@ -93,8 +95,25 @@ World.prototype.isAvailable = function(x, y) {
     return true;
 };
 
+World.prototype.addLaser = function(data) {
+    var laser = new Laser(data);
+    this.lasers[data.id] = laser;
+    this.addChild(laser);
+};
+
+World.prototype.removeLaser = function(laser) {
+    this.removeChild(laser);
+    delete this.lasers[laser.data.id];
+}
+
 World.prototype.frame = function(n) {
     if (n % 4 == 0) {
         this.player.frame();
+
+    }
+    if (n % 5 == 0) {
+        for (var key in this.lasers) {
+            this.lasers[key].frame();
+        }
     }
 }

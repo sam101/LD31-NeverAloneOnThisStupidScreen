@@ -48,6 +48,12 @@ Network.prototype.connect = function() {
         }
     });
 
+    this.socket.on('laserData', function(data) {
+        if (game.isLaunched) {
+            world.addLaser(data);
+        }
+    });
+
 
 }
 
