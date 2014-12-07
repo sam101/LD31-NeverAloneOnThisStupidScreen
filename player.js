@@ -18,7 +18,7 @@ function Player(socket, name, world) {
     this.data = {};
 
     this.data.name = name;
-    this.data.sprite = 0;
+    this.data.sprite = tools.randInt(0, common.PLAYER_SPRITES);
     this.data.level = 1;
     this.data.hp = formula.hpForLevel(this.data.level);
     this.data.hpMax = formula.hpForLevel(this.data.level);
