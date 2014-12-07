@@ -21,8 +21,6 @@ function World(id) {
     this.lasers = {};
 
     this.entities = this.generateEntitiesTab();
-
-    console.log("Just built a world with id " + id + "(" + this.width + "," + this.height + ")");
 }
 
 World.prototype.generateEntitiesTab = function() {
@@ -108,13 +106,9 @@ World.prototype.movePlayer = function(player, x, y) {
         this.entities[player.data.y][player.data.x] = undefined;
         player.move(x,y);
         this.entities[player.data.y][player.data.x] = player;
-        console.log("Player " + player.name + " has moved to " + x + "," + y);
 
         this.sendPlayerDataToPlayers(player);
 
-    }
-    else {
-        console.log("Refused move to " + x + "," + y + " for " + player.name);
     }
 }
 
@@ -208,7 +202,7 @@ World.prototype.generateMonster = function() {
     var level = this.generateMonsterLevel();
     var monster = new Monster(this, level);
     this.monsters[monster.id] = monster;
-    console.log("Generated a new monster with id " + monster.id);
+    console.log("Generated a new monster with id " + monster.id + " and level " + level);
     this.monstersInWorld++;
 };
 
