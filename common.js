@@ -11,6 +11,7 @@ module.exports = {
     MONSTER_APPARITION_PROBABILITY: 30,
     PLAYER_SPRITES: 6,
     MONSTER_SPRITES: 8,
+    DECAY_LASER: 5,
     DIRECTIONS: {
         TOP:0,
         BOTTOM:1,

@@ -14,6 +14,8 @@ function Laser(world, origin, x, y, direction) {
     this.world = world;
     this.origin = origin;
 
+    this.steps = 0;
+
     if (origin.isPlayer) {
         this.data.sprite = 0;
     }
@@ -23,6 +25,7 @@ function Laser(world, origin, x, y, direction) {
 }
 
 Laser.prototype.step = function() {
+    this.steps++;
     var newX = this.data.x, newY = this.data.y;
     switch (this.data.direction) {
         case common.DIRECTIONS.LEFT:
@@ -41,13 +44,20 @@ Laser.prototype.step = function() {
     this.data.x = newX;
     this.data.y = newY;
     if (this.world.entities[newY][newX] != undefined) {
-        this.origin.removeLaser();
+        if (this.steps <= common.DECAY_LASER) {
+            this.origin.removeLaser();
+        }
         this.world.shootEntity(this);
         this.world.removeLaser(this);
     }
     else if (! this.world.isTileAvailable(newX, newY)) {
-        this.origin.removeLaser();
+        if (this.steps <= common.DECAY_LASER) {
+            this.origin.removeLaser();
+        }
         this.world.removeLaser(this);
+    }
+    else if (this.steps == common.DECAY_LASER) {
+        this.origin.removeLaser();
     }
 };
 
