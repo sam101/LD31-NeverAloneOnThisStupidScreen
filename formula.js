@@ -20,6 +20,15 @@ exports.hpForMonster = function(level) {
     return 10 + (level - 1) * 10;
 };
 
+exports.scoreForMonsterKilling = function(level) {
+    return 100 * level + 50 * Math.pow(level, 2);
+};
+
+exports.scoreForPlayerKilling = function(level) {
+    return 250 * level + 50 * Math.pow(level, 4);
+};
+
+
 exports.attackForMonsterAtLevel = function(level) {
     return level * 5;
 };

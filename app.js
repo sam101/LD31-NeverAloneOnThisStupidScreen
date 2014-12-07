@@ -9,11 +9,13 @@ var argv = require('optimist').argv;
 var express =require('express');
 var serveStatic = require('serve-static');
 
-var env = argv.env || 'production';
+var env = argv.env || 'development';
 
 var app = express();
 app.set('view engine', 'jade');
-app.locals.pretty = true
+if (env == 'development') {
+    app.locals.pretty = true
+}
 
 var http = require('http').Server(app);
 var io = require('socket.io')(http);

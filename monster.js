@@ -25,7 +25,7 @@ function Monster(world, level) {
     this.generateInitialPosition();
     this.direction = this.generateDirection();
 }
-Monster.prototype.addExp = function(expToAdd) {
+Monster.prototype.addExp = function(expToAdd, level) {
     // Do nothing, monsters do not gain exp (for now)
 }
 Monster.prototype.generateInitialPosition = function() {
@@ -73,7 +73,7 @@ Monster.prototype.shotWith = function(laser) {
     console.log("Monster " + this.id + " shot : ", this.data.hp + "/" + this.data.hpMax);
     if (this.data.hp <= 0) {
         this.world.removeMonster(this);
-        laser.origin.addExp(this.expGivenOnDeath);
+        laser.origin.addExp(this.expGivenOnDeath, this.data.level, false);
     }
 };
 

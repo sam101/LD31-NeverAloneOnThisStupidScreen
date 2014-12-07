@@ -3,14 +3,14 @@ var sounds = {};
 
 sounds.MUSIC = new buzz.sound("sounds/first", {
     formats: ["mp3"],
-    loop: true
+    loop: true,
+    volume: 50
 });
-sounds.MUSIC.setVolume(50);
 
 sounds.GAME_OVER = new buzz.sound("sounds/gameOver", {
-    formats: ["mp3"]
+    formats: ["mp3"],
+    volume: 50
 });
-sounds.GAME_OVER.setVolume(50);
 
 sounds.LEVEL_UP = new buzz.sound("sounds/levelUp", {
     formats: ["wav"]

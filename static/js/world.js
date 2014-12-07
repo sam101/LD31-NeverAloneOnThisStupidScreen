@@ -37,6 +37,8 @@ function World(initialData) {
     this.expbar = new ExpBar(this.player);
     this.addChild(this.expbar);
 
+    this.score = new Score(this.player.data);
+    this.addChild(this.score);
 }
 
 World.prototype = Object.create(PIXI.DisplayObjectContainer.prototype);
@@ -45,6 +47,7 @@ World.prototype.updateData = function(data) {
     this.player.update(data);
     this.lifebar.update(data.hp, data.hpMax);
     this.expbar.update(data.level, data.exp, data.expToNextLevel);
+    this.score.update(data);
 };
 
 World.prototype.updatePlayerData = function(playerData) {

@@ -12,6 +12,7 @@ function Player(socket, name, world) {
     this.isPlayer = true;
     this.inWorld = true;
 
+
     this.canFire = true;
     this.missilesFired = 0;
 
@@ -20,6 +21,8 @@ function Player(socket, name, world) {
     this.data.name = name;
     this.data.sprite = 0;
     this.data.level = 1;
+    this.data.score = 0;
+
     this.data.hp = formula.hpForLevel(this.data.level);
     this.data.hpMax = formula.hpForLevel(this.data.level);
 
@@ -62,7 +65,13 @@ Player.prototype.save = function(){
 };
 
 
-Player.prototype.addExp = function(expToAdd) {
+Player.prototype.addExp = function(expToAdd, level, isPlayer) {
+    if (isPlayer) {
+        this.data.score += formula.scoreForPlayerKilling(level);
+    }
+    else {
+        this.data.score += formula.scoreForMonsterKilling(level);
+    }
     this.data.exp += expToAdd;
     if (this.data.exp >= this.data.expToNextLevel) {
         this.data.exp -= this.data.expToNextLevel;
