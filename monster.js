@@ -15,6 +15,8 @@ function Monster(world) {
 
     this.world = world;
 
+    this.dead = false;
+
     this.canFire = true;
     this.missilesFired = 0;
 
@@ -78,6 +80,17 @@ Monster.prototype.move = function(x,y) {
         this.data.x = x;
         this.data.y = y;
         this.world.entities[this.data.y][this.data.x] = this;
+        return true;
+    }
+    else if (this.world.collidesWithPlayer(x,y)) {
+        var damage = {
+            origin: this,
+            data: {
+                attack: formula.collisionDamageForMonster(this.data.level)
+            }
+        };
+        this.world.entities[y][x].shotWith(damage);
+        this.world.removeMonster(this);
         return true;
     }
     return false;

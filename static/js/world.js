@@ -116,8 +116,8 @@ World.prototype.removeLaser = function(laser) {
 World.prototype.frame = function(n) {
     if (n % 4 == 0) {
         this.player.frame();
-
     }
+
     if (n % 5 == 0) {
         for (var key in this.lasers) {
             this.lasers[key].frame();

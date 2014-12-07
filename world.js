@@ -49,6 +49,17 @@ World.prototype.isTileAvailable = function(x, y) {
     return true;
 }
 
+World.prototype.collidesWithPlayer = function(x, y) {
+    if (this.entities[y][x] == undefined) {
+        return false;
+    }
+    var entity = this.entities[y][x];
+    if (entity.isPlayer) {
+        return true;
+    }
+    return false;
+}
+
 World.prototype.addPlayerToPosition = function(player, x, y) {
     if (this.entities[y][x] != undefined) {
         throw "Don't add a player to an existing position.";
@@ -159,8 +170,11 @@ World.prototype.step = function(n) {
     }
     if (n % 2 == 0) {
         for (var key in this.monsters) {
-            this.monsters[key].step();
-            this.sendMonsterData(this.monsters[key]);
+            var monster = this.monsters[key];
+            monster.step();
+            if (! monster.dead) {
+                this.sendMonsterData(monster);
+            }
         }
     }
 
@@ -171,6 +185,7 @@ World.prototype.step = function(n) {
 
 World.prototype.checkMonsterPopulation = function() {
     if (this.monstersInWorld >= common.MONSTER_PER_PLAYERS * this.size) {
+        console.log("Too many monsters in world to generate another one");
         return;
     }
     if (tools.randInt(0, 100) <= common.MONSTER_APPARITION_PROBABILITY) {
@@ -201,6 +216,8 @@ World.prototype.addMonster = function(monster, x, y) {
 
 World.prototype.removeMonster = function(monster) {
     this.entities[monster.data.y][monster.data.x] = undefined;
+
+    monster.dead = true;
 
     this.monstersInWorld--;
     delete this.monsters[monster.data.id];

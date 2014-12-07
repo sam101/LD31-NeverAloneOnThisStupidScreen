@@ -18,7 +18,7 @@ Tiles.prototype.addTile = function(x, y, tile) {
     tile.position.x = x * common.TILE_SIZE;
     tile.position.y = y * common.TILE_SIZE;
 
-    this.addChild(tile, x * common.TILE_SIZE, y * common.TILE_SIZE);
+    this.addChild(tile);
 }
 
 Tiles.prototype.generateTiles = function() {
