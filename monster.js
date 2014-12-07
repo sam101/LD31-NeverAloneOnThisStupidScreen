@@ -5,11 +5,11 @@ var tools = require('./tools');
 
 var id = 0;
 
-function Monster(world) {
+function Monster(world, level) {
     this.data = {};
     this.data.id = this.id = id++;
-    this.data.sprite = 0;
-    this.data.level = 1;
+    this.data.level = level;
+    this.data.sprite = this.data.level % common.MONSTER_SPRITES;
     this.data.hp = formula.hpForMonster(this.data.level);
     this.data.hpMax = formula.hpForMonster(this.data.level);
 

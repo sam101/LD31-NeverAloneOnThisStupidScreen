@@ -30,6 +30,9 @@ common.sprites = {
 common.monsterSprites = {
     0: {
         texture: PIXI.Texture.fromImage("res/monster0.png")
+    },
+    1: {
+        texture: PIXI.Texture.fromImage("res/monster1.png")
     }
 };
 

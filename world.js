@@ -185,7 +185,6 @@ World.prototype.step = function(n) {
 
 World.prototype.checkMonsterPopulation = function() {
     if (this.monstersInWorld >= common.MONSTER_PER_PLAYERS * this.size) {
-        console.log("Too many monsters in world to generate another one");
         return;
     }
     if (tools.randInt(0, 100) <= common.MONSTER_APPARITION_PROBABILITY) {
@@ -194,10 +193,27 @@ World.prototype.checkMonsterPopulation = function() {
 };
 
 World.prototype.generateMonster = function() {
-    var monster = new Monster(this);
+    var level = this.generateMonsterLevel();
+    var monster = new Monster(this, level);
     this.monsters[monster.id] = monster;
     console.log("Generated a new monster with id " + monster.id);
     this.monstersInWorld++;
+};
+
+World.prototype.generateMonsterLevel = function() {
+    var minLevel = this.size;
+    var maxLevel = 0;
+    for (var key in this.players) {
+        maxLevel += this.players[key].data.level;
+    }
+
+    if (minLevel < 1) {
+        minLevel = 1;
+    }
+
+
+    var level = tools.randInt(minLevel, maxLevel + 1);
+    return Math.floor(level / Math.max(this.size, 1));
 };
 
 World.prototype.addMonster = function(monster, x, y) {
