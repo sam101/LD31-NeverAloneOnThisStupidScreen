@@ -51,14 +51,20 @@ Game.prototype.endGame = function() {
     var gameOver = new PIXI.Text("GAME OVER. RESET IN 5 SECONDS.", {font:"30px pressstart", fill:"white", dropShadow:true});
     gameOver.position.x = common.RENDER_WIDTH / 2 - gameOver.width / 2;
     gameOver.position.y = common.RENDER_HEIGHT / 2 - gameOver.height / 2;
-    console.log(this.container.width, this.container.height, gameOver.width, gameOver.height);
-    console.log(gameOver.position.x, gameOver.position.y);
     this.container.addChild(gameOver);
     this.isLaunched = false;
 
     setTimeout(function() {
         location.reload();
     }, 5000);
+};
+
+Game.prototype.invalidUsername = function() {
+    var invalid = new PIXI.Text("YOU SUPPLIED AN INVALID USERNAME !", {font:"30px pressstart", fill:"white", dropShadow:true});
+    invalid.position.x = common.RENDER_WIDTH / 2 - invalid.width / 2;
+    invalid.position.y = common.RENDER_HEIGHT / 2 - invalid.height / 2;
+
+    this.container.addChild(invalid);
 };
 
 Game.prototype.draw = function() {

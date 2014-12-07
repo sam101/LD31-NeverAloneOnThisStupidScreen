@@ -60,6 +60,11 @@ Network.prototype.connect = function() {
         }
     });
 
+    this.socket.on('wrongUsername', function() {
+        localStorage.removeItem('playerName');
+        game.invalidUsername();
+    });
+
     this.socket.on('death', function() {
         game.endGame();
     });
