@@ -60,7 +60,7 @@ World.prototype.addPlayerToPosition = function(player, x, y) {
 World.prototype.generate = function() {
     console.log("Currently generating the world...");
     this.entities = this.generateEntitiesTab();
-    this.monsters = [];
+    this.monsters = {};
     this.monstersInWorld = 0;
     this.lasers = {};
     this.tiles = worldGenerator.generate(this.width, this.height);
@@ -106,7 +106,7 @@ World.prototype.movePlayer = function(player, x, y) {
 World.prototype.removePlayer = function(player) {
     console.log("Removing " + player.name);
     this.size--;
-    delete this.entities[player.data.y][player.data.x];
+    this.entities[player.data.y][player.data.x] = undefined;
     delete this.players[player.socket.id];
 
     for (var key in this.players) {
@@ -179,7 +179,6 @@ World.prototype.generateMonster = function() {
     this.monsters[monster.id] = monster;
     console.log("Generated a new monster with id " + monster.id);
     this.monstersInWorld++;
-    this.sendMonsterData(monster);
 };
 
 World.prototype.addMonster = function(monster, x, y) {
@@ -194,6 +193,17 @@ World.prototype.addMonster = function(monster, x, y) {
     this.entities[y][x] = monster;
 
     this.sendMonsterData(monster);
+};
+
+World.prototype.removeMonster = function(monster) {
+    this.entities[monster.data.y][monster.data.x] = undefined;
+
+    this.monstersInWorld--;
+    delete this.monsters[monster.data.id];
+
+    for (var key in this.players) {
+        this.players[key].socket.emit('removeMonster', monster.data);
+    }
 };
 
 World.prototype.sendMonsterData = function(monster) {
@@ -230,8 +240,9 @@ World.prototype.removeLaser = function(laser) {
     delete this.lasers[laser.data.id];
 };
 
-World.prototype.shootEntity = function(laser, x, y) {
-
+World.prototype.shootEntity = function(laser) {
+    var entity = this.entities[laser.data.y][laser.data.x];
+    entity.shotWith(laser);
 }
 
 World.prototype.sendLaserData = function(laser) {

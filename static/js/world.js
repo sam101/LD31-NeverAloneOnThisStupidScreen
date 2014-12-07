@@ -75,6 +75,13 @@ World.prototype.updateMonster = function(monsterData) {
     }
 };
 
+World.prototype.removeMonster = function(monsterData) {
+    if (this.monsters.hasOwnProperty(monsterData.id)) {
+        this.removeChild(this.monsters[monsterData.id]);
+        delete this.monsters[monsterData.id];
+    }
+};
+
 World.prototype.isAvailable = function(x, y) {
     if (! this.tiles.tiles[y][x].passable) {
         return false;

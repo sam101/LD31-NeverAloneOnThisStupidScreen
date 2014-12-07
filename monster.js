@@ -1,5 +1,6 @@
 "use strict";
 var common = require('./common');
+var formula = require('./formula');
 var tools = require('./tools');
 
 var id = 0;
@@ -8,6 +9,10 @@ function Monster(world) {
     this.data = {};
     this.data.id = this.id = id++;
     this.data.sprite = 0;
+    this.data.level = 1;
+    this.data.hp = formula.hpForMonster(this.data.level);
+    this.data.hpMax = formula.hpForMonster(this.data.level);
+
     this.world = world;
 
     this.canFire = true;
@@ -52,6 +57,14 @@ Monster.prototype.step = function() {
 
 Monster.prototype.generateDirection  = function() {
     return tools.randInt(0, common.DIRECTIONS.MAX);
+};
+
+Monster.prototype.shotWith = function(laser) {
+    this.data.hp -= laser.data.attack;
+    console.log("Monster " + this.id + " shot : ", this.data.hp + "/" + this.data.hpMax);
+    if (this.data.hp <= 0) {
+        this.world.removeMonster(this);
+    }
 };
 
 Monster.prototype.move = function(x,y) {

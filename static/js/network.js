@@ -48,11 +48,18 @@ Network.prototype.connect = function() {
         }
     });
 
+    this.socket.on('removeMonster', function(monsterData) {
+        if (game.isLaunched) {
+            world.removeMonster(monsterData);
+        }
+    });
+
     this.socket.on('laserData', function(data) {
         if (game.isLaunched) {
             world.addLaser(data);
         }
     });
+
 
 
 }

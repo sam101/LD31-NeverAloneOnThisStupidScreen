@@ -49,6 +49,10 @@ Player.prototype.move = function(x, y) {
     this.data.y = y;
 };
 
+Player.prototype.shotWith = function(laser) {
+
+};
+
 Player.prototype.shoot = function() {
     this.missilesFired = 4;
     this.canFire = false;

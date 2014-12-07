@@ -1,10 +1,12 @@
 "use strict";
 var common = require('./common');
+var formula = require('./formula');
 
 var nextId = 0;
 
 function Laser(world, origin, x, y, direction) {
     this.data = {};
+    this.data.attack = formula.attackForLevel(origin.data.level);
     this.data.id = nextId++;
     this.data.x = x;
     this.data.y = y;
