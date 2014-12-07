@@ -60,6 +60,10 @@ Network.prototype.connect = function() {
         }
     });
 
+    this.socket.on('death', function() {
+        game.endGame();
+    });
+
 
 
 }

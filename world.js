@@ -131,6 +131,7 @@ World.prototype.removePlayer = function(player) {
 };
 
 World.prototype.killPlayer = function(player) {
+    player.socket.emit('death');
     this.removePlayer(player);
 }
 

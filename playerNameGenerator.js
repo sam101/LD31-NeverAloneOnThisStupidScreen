@@ -4,6 +4,7 @@ var adjectives = require('./data/adjectives.json');
 var animals = require('./data/animals.json');
 var colors = require('./data/colors.json');
 
+var playerData = require('./persistance/playerdata');
 var tools = require('./tools');
 
 exports.check = function(username) {
