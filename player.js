@@ -97,6 +97,7 @@ Player.prototype.move = function(x, y) {
 Player.prototype.shotWith = function(laser) {
     this.data.hp -= laser.data.attack;
     console.log("Player " + this.name + " shot : ", this.data.hp + "/" + this.data.hpMax);
+    this.socket.emit('damageTaken');
     this.socket.emit('data', this.data);
     if (this.data.hp <= 0) {
         this.world.killPlayer(this);

@@ -26,5 +26,13 @@ ExpBar.prototype.update = function(level, exp, expToNextLevel) {
     if (level == this.level && exp == this.exp && expToNextLevel == this.expToNextLevel) {
         return;
     }
+    else if (level != this.level) {
+        sounds.LEVEL_UP.play();
+    }
     common.expBar.frame = new PIXI.Rectangle(0,0, exp / expToNextLevel * common.expBar.width, common.expBar.height);
+
+    this.level = level;
+    this.exp = exp;
+    this.expToNextLevel = expToNextLevel;
+
 };

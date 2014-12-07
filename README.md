@@ -1,2 +1,2 @@
-LD31 - Never alone on this screen
+LD31 - Never alone on this stupid screen
 ====

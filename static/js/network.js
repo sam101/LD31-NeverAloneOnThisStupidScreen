@@ -71,8 +71,11 @@ Network.prototype.connect = function() {
     });
 
     this.socket.on('winGame', function() {
-        game.winGame();
-        this.socket.disconnect();
+        if (game.isLaunched) {
+            game.winGame();
+
+            this.socket.disconnect();
+        }
     });
 
     this.socket.on('alreadyConnected', function(){
@@ -80,6 +83,9 @@ Network.prototype.connect = function() {
         this.socket.disconnect();
     });
 
+    this.socket.on('damageTaken', function() {
+        world.player.damageTaken();
+    });
 
 }
 

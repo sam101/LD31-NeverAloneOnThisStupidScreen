@@ -77,6 +77,7 @@ World.prototype.updateMonster = function(monsterData) {
 
 World.prototype.removeMonster = function(monsterData) {
     if (this.monsters.hasOwnProperty(monsterData.id)) {
+        sounds.MONSTER_DEAD.play();
         this.removeChild(this.monsters[monsterData.id]);
         delete this.monsters[monsterData.id];
     }
@@ -103,6 +104,7 @@ World.prototype.isAvailable = function(x, y) {
 };
 
 World.prototype.addLaser = function(data) {
+    sounds.LASER_SHOT.play();
     var laser = new Laser(data);
     this.lasers[data.id] = laser;
     this.addChild(laser);

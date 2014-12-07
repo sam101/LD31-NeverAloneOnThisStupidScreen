@@ -36,6 +36,7 @@ Game.prototype.sizeContainer = function() {
 
 Game.prototype.startGame = function(initialData) {
     console.log("Let's start the game !");
+    sounds.MUSIC.play();
     world = new World(initialData);
     this.container.addChild(world);
 
@@ -47,8 +48,10 @@ Game.prototype.endGame = function() {
     var blurFilter = new PIXI.BlurFilter();
     world.filters = [blurFilter];
 
+    buzz.all().stop();
+    sounds.GAME_OVER.play();
 
-    var gameOver = new PIXI.Text("GAME OVER. RESET IN 5 SECONDS.", {font:"30px pressstart", fill:"white", dropShadow:true});
+    var gameOver = new PIXI.Text("GAME OVER. RESET IN 10 SECONDS.", {font:"30px pressstart", fill:"white", dropShadow:true});
     gameOver.position.x = common.RENDER_WIDTH / 2 - gameOver.width / 2;
     gameOver.position.y = common.RENDER_HEIGHT / 2 - gameOver.height / 2;
     this.container.addChild(gameOver);
@@ -56,7 +59,7 @@ Game.prototype.endGame = function() {
 
     setTimeout(function() {
         location.reload();
-    }, 5000);
+    }, 10000);
 };
 
 Game.prototype.winGame = function() {

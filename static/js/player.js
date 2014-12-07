@@ -57,6 +57,7 @@ Player.prototype.frame = function() {
 };
 
 Player.prototype.shoot = function() {
+    sounds.SHOOT.play();
     network.socket.emit('shoot');
 };
 
@@ -67,4 +68,8 @@ Player.prototype.move = function(x, y) {
         this.calculatePosition();
     }
     network.socket.emit('move', this.data.x, this.data.y);
+};
+
+Player.prototype.damageTaken = function() {
+    sounds.HIT.play();
 };
