@@ -2,13 +2,13 @@ LD31 - Never alone on this stupid screen
 ====
 About
 -----
-"Never alone on this stupid screen" is a multiplayer survival game written in 48h for the LD31 challenge.
+"Never alone on this stupid screen" is a multiplayer action survival game written in 48h for the LD31 challenge.
 
 You are a shinny 8-bit guy who just wants to be alone on his CRT cave screen, but there's always stupid monsters, and
 EVEN WORSE, other players, that comes to annoy you.
 
 But maybe you'll get to the heaven of 8-bits guys if you kill enough guys. And don't worry, your guy will always remember
-his stupid name and his level.
+his stupid name and his level if he dies.
 
 You can play using the arrow keys, and space/enter to fire.
 
