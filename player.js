@@ -22,6 +22,17 @@ function Player(socket, name, world) {
     this.generateInitialPosition();
 }
 
+Player.prototype.addExp = function(expToAdd) {
+    this.data.exp += expToAdd;
+    if (this.data.exp >= this.data.expToNextLevel) {
+        this.data.exp -= this.data.expToNextLevel;
+        this.data.level++;
+        this.data.expToNextLevel = formula.expForLevel(this.data.level);
+    }
+    this.world.sendPlayerDataToPlayers(this);
+    this.socket.emit('data', this.data);
+};
+
 Player.prototype.generateInitialPosition = function() {
     do {
         var x = tools.randInt(0, this.world.width);

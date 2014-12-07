@@ -41,7 +41,8 @@ World.prototype = Object.create(PIXI.DisplayObjectContainer.prototype);
 
 World.prototype.updateData = function(data) {
     this.player.update(data);
-    this.lifeBar.update(data.hp, data.hpMax);
+    this.lifebar.update(data.hp, data.hpMax);
+    this.expbar.update(data.level, data.exp, data.expToNextLevel);
 };
 
 World.prototype.updatePlayerData = function(playerData) {

@@ -15,6 +15,8 @@ function Player(data) {
     this.nameText.anchor.x = 0.3;
     this.nameText.anchor.y = 1.5;
 
+    this.currentLevel = data.level;
+
     this.addChild(this.nameText);
 }
 Player.prototype = Object.create(PIXI.Sprite.prototype);
@@ -25,7 +27,12 @@ Player.prototype.calculatePosition = function() {
 };
 
 Player.prototype.update = function(data) {
+    if (data.level != this.currentLevel) {
+        this.nameText.setText(data.name.toUpperCase() + "(" + data.level + ")");
+        this.currentLevel = data.level;
+    }
     this.data = data;
+
     this.calculatePosition();
 };
 
