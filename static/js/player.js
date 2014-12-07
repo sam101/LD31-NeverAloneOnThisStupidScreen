@@ -24,6 +24,11 @@ Player.prototype.calculatePosition = function() {
     this.position.y = this.data.y * common.TILE_SIZE;
 };
 
+Player.prototype.update = function(data) {
+    this.data = data;
+    this.calculatePosition();
+};
+
 
 Player.prototype.frame = function() {
     var keys = KeyboardJS.activeKeys();

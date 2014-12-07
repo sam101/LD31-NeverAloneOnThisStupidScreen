@@ -6,6 +6,9 @@ var common = {
     TILE_SIZE: 32
 };
 
+common.emptyBar = PIXI.Texture.fromImage("res/emptybar.png");
+common.lifeBar = PIXI.Texture.fromImage("res/lifebar.png");
+common.expBar = PIXI.Texture.fromImage("res/expbar.png");
 
 common.sprites = {
     0: {

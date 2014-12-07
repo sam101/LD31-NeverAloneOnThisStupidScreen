@@ -24,6 +24,12 @@ Network.prototype.connect = function() {
         game.startGame(initialData);
     })
 
+    this.socket.on('data', function(data) {
+        if (game.isLaunched) {
+            world.updateData(data);
+        }
+    });
+
     this.socket.on('playerData', function(playerData) {
         if (game.isLaunched) {
             world.updatePlayerData(playerData);

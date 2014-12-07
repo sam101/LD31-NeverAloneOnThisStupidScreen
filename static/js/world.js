@@ -29,9 +29,18 @@ function World(initialData) {
         this.addChild(this.monsters[monster.id]);
     }
 
+
+    this.lifebar = new LifeBar(this.player);
+    this.addChild(this.lifebar);
+
 }
 
 World.prototype = Object.create(PIXI.DisplayObjectContainer.prototype);
+
+World.prototype.updateData = function(data) {
+    this.player.update(data);
+    this.lifeBar.update(data.hp, data.hpMax);
+};
 
 World.prototype.updatePlayerData = function(playerData) {
     if (this.players.hasOwnProperty(playerData.name)) {
