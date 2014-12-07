@@ -39,6 +39,11 @@ function handleNewPlayer(socket) {
     })
 
     socket.on('login', function(name) {
+        if (! playerNameGenerator.check(name)) {
+            console.log("Wanted name " + name + " is invalid");
+            socket.emit('wrongUsername');
+            return;
+        }
         addPlayerToWorld(socket, name, function(err) {
             var world = worldsForSocket[socket];
             console.log("Add player " + name + " to world " + world.id + " (" + world.size + " players)");
