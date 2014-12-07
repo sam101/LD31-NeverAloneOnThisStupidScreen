@@ -14,11 +14,17 @@ You can play using the arrow keys, and space/enter to fire.
 
 Please play using a modern, Chrome/Safari recommended, since Firefox tends to lag a bit sometimes :(.
 
+Online version: http://ld31.slepetit.com
+
 Technical stuff
 ---------------
 
+
 The game uses a cellular automate to generate the map, and a flood fill algorithm to check that the map is composed of
 only one cave, to avoid obvious issues.
+
+The code is general is far from good (for obvious reasons), there's some code duplications that should be removed and
+the sound system is a mess.
 
 The game uses pixi.js for the graphics engine, keyboard.js for the... keyboard, buzz.js for the sound effects/music,
 node.js/socket.io/mongoose server-side.

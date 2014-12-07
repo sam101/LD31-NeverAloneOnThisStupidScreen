@@ -6,6 +6,8 @@ function Game() {
     this.stage.interactive = true;
 
     this.renderer = PIXI.autoDetectRenderer(window.innerWidth, window.innerHeight);
+
+    this.renderer.view.setAttribute("id", "renderer");
     document.body.appendChild(this.renderer.view);
 
     this.container = new PIXI.DisplayObjectContainer();
