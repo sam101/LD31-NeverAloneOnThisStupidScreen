@@ -17,6 +17,9 @@ function ExpBar(player) {
 
     common.expBar.frame = new PIXI.Rectangle(0,0,0, common.expBar.height);
 
+    this.expText = new PIXI.Text("LVL " + this.level + " - " + this.exp + "/" + this.expToNextLevel, {font:"14px pressstart", fill:"red", dropShadow:true});
+    this.addChild(this.expText);
+
     this.update(player.data.level, player.data.exp, player.data.expToNextLevel);
 };
 
@@ -29,6 +32,7 @@ ExpBar.prototype.update = function(level, exp, expToNextLevel) {
     else if (level != this.level) {
         sounds.LEVEL_UP.play();
     }
+    this.expText.setText("LVL " + level + " - " + exp + "/" + expToNextLevel);
     common.expBar.frame = new PIXI.Rectangle(0,0, exp / expToNextLevel * common.expBar.width, common.expBar.height);
 
     this.level = level;

@@ -46,6 +46,12 @@ Player.prototype.load = function(callback) {
             self.data.sprite = playerData.sprite != undefined ? playerData.sprite : tools.randInt(0, common.PLAYER_SPRITES);
             self.data.level = playerData.level;
         }
+        self.data.hp = formula.hpForLevel(self.data.level);
+        self.data.hpMax = formula.hpForLevel(self.data.level);
+
+        self.data.exp = 0;
+        self.data.expToNextLevel = formula.expForLevel(self.data.level);
+
         return callback();
     });
 };
