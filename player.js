@@ -16,6 +16,8 @@ function Player(socket, name, world) {
     this.data.hp = formula.hpForLevel(this.data.level);
     this.data.hpMax = formula.hpForLevel(this.data.level);
 
+    this.data.exp = 0;
+    this.data.expToNextLevel = formula.expForLevel(this.data.level);
 
     this.generateInitialPosition();
 }

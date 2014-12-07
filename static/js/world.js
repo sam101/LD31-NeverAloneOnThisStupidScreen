@@ -29,9 +29,11 @@ function World(initialData) {
         this.addChild(this.monsters[monster.id]);
     }
 
-
     this.lifebar = new LifeBar(this.player);
     this.addChild(this.lifebar);
+
+    this.expbar = new ExpBar(this.player);
+    this.addChild(this.expbar);
 
 }
 
