@@ -85,7 +85,8 @@ World.prototype.generate = function() {
 };
 
 World.prototype.addPlayer = function(socket, name, callback) {
-    if (this.size == 0) {
+    if (this.size <= 0) {
+        this.size = 0;
         this.generate();
     }
     this.size++;
@@ -137,7 +138,7 @@ World.prototype.removePlayer = function(player, callback) {
 };
 
 World.prototype.killPlayer = function(player) {
-
+    player.socket.emit('death');
     this.removePlayer(player);
 }
 
