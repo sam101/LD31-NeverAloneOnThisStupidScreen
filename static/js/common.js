@@ -14,7 +14,10 @@ common.directions = {
     MAX:4
 };
 
-common.laser = PIXI.Texture.fromImage("res/laser.png");
+common.lasers = {
+    0: PIXI.Texture.fromImage("res/laser.png"),
+    1: PIXI.Texture.fromImage("res/monsterLaser.png")
+};
 
 common.emptyBar = PIXI.Texture.fromImage("res/emptybar.png");
 common.lifeBar = PIXI.Texture.fromImage("res/lifebar.png");

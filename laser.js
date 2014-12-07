@@ -13,6 +13,13 @@ function Laser(world, origin, x, y, direction) {
     this.data.direction = direction;
     this.world = world;
     this.origin = origin;
+
+    if (origin.isPlayer) {
+        this.data.sprite = 0;
+    }
+    else {
+        this.data.sprite = 1;
+    }
 }
 
 Laser.prototype.step = function() {

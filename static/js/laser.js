@@ -2,7 +2,7 @@
 function Laser(data) {
     this.data = data;
 
-    PIXI.Sprite.call(this, common.laser);
+    PIXI.Sprite.call(this, common.lasers[data.sprite]);
 
     this.calculatePosition();
 }
