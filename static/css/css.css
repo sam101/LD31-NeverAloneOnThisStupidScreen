@@ -22,8 +22,10 @@ canvas {
 }
 
 #placeholder {
+    display:inline;
     visibility:hidden;
     color:black;
-    size:1px;
+    width:0px;
+    height:0px;
     font-family: 'pressstart';
 }
