@@ -115,6 +115,10 @@ World.prototype.removePlayer = function(player) {
 
 };
 
+World.prototype.killPlayer = function(player) {
+    this.removePlayer(player);
+}
+
 World.prototype.getPlayer = function(socket) {
     return this.players[socket.id];
 };
