@@ -17,7 +17,8 @@ function ExpBar(player) {
 
     common.expBar.frame = new PIXI.Rectangle(0,0,0, common.expBar.height);
 
-    this.expText = new PIXI.Text("LVL " + this.level + " - " + this.exp + "/" + this.expToNextLevel, {font:"14px pressstart", fill:"red", dropShadow:true});
+    this.expText = new PIXI.Text("LVL " + this.level + " - " + this.exp + "/" + this.expToNextLevel, {font:"14px pressstart", fill:"white", dropShadow:true});
+    this.expText.position.y++;
     this.addChild(this.expText);
 
     this.update(player.data.level, player.data.exp, player.data.expToNextLevel);
