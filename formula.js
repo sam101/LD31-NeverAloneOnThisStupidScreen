@@ -1,7 +1,7 @@
 "use strict";
 
 exports.expForLevel = function(level) {
-    return 10 + Math.pow(level, 3);
+    return 5 + Math.pow(level, 3);
 };
 
 exports.expForPlayerKilling = function(level) {

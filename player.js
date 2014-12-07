@@ -47,6 +47,7 @@ Player.prototype.load = function(callback) {
 
 Player.prototype.save = function(){
     var self = this;
+    this.playerData.level = this.data.level;
     this.playerData.save(function(err) {
         if (err) {
             console.err("Saving of " + self.data.name + " failed. Too bad for him");

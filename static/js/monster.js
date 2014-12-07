@@ -11,7 +11,7 @@ Monster.prototype = Object.create(PIXI.Sprite.prototype);
 Monster.prototype.update = function(data) {
     this.data = data;
     this.calculatePosition();
-}
+};
 
 Monster.prototype.calculatePosition = function() {
     this.position.x = this.data.x * common.TILE_SIZE;

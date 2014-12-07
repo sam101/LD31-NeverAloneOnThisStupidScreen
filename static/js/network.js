@@ -5,6 +5,7 @@ function Network() {
     this.handleConnexion();
 }
 Network.prototype.handleConnexion = function() {
+    this.playerName = localStorage.getItem('playerName');
     if (this.playerName == undefined) {
         this.playerName = this.generatePlayerName(function(playerName) {
             this.playerName = playerName;
