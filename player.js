@@ -54,7 +54,7 @@ Player.prototype.shoot = function() {
     this.canFire = false;
 }
 
-Player.prototype.removeShoot = function() {
+Player.prototype.removeLaser = function() {
     this.missilesFired--;
     if (this.missilesFired == 0) {
         this.canFire = true;

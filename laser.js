@@ -3,13 +3,14 @@ var common = require('./common');
 
 var nextId = 0;
 
-function Laser(world, x, y, direction) {
+function Laser(world, origin, x, y, direction) {
     this.data = {};
     this.data.id = nextId++;
     this.data.x = x;
     this.data.y = y;
     this.data.direction = direction;
     this.world = world;
+    this.origin = origin;
 }
 
 Laser.prototype.step = function() {
@@ -31,10 +32,12 @@ Laser.prototype.step = function() {
     this.data.x = newX;
     this.data.y = newY;
     if (this.world.entities[newY][newX] != undefined) {
+        this.origin.removeLaser();
         this.world.shootEntity(this);
         this.world.removeLaser(this);
     }
     else if (! this.world.isTileAvailable(newX, newY)) {
+        this.origin.removeLaser();
         this.world.removeLaser(this);
     }
 };

@@ -71,7 +71,7 @@ Monster.prototype.shoot = function() {
     this.canFire = false;
 }
 
-Monster.prototype.removeShoot = function() {
+Monster.prototype.removeLaser = function() {
     this.missilesFired--;
     if (this.missilesFired == 0) {
         this.canFire = true;

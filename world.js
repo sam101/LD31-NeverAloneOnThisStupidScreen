@@ -206,20 +206,23 @@ World.prototype.shoot = function(origin) {
     if (!origin.canFire) {
         return;
     }
-    this.addLaser(origin.data.x - 1, origin.data.y, common.DIRECTIONS.LEFT);
-    this.addLaser(origin.data.x + 1, origin.data.y, common.DIRECTIONS.RIGHT);
-    this.addLaser(origin.data.x, origin.data.y - 1, common.DIRECTIONS.TOP);
-    this.addLaser(origin.data.x, origin.data.y + 1, common.DIRECTIONS.BOTTOM);
-
     origin.shoot();
+
+    this.addLaser(origin, origin.data.x - 1, origin.data.y, common.DIRECTIONS.LEFT);
+    this.addLaser(origin, origin.data.x + 1, origin.data.y, common.DIRECTIONS.RIGHT);
+    this.addLaser(origin, origin.data.x, origin.data.y - 1, common.DIRECTIONS.TOP);
+    this.addLaser(origin, origin.data.x, origin.data.y + 1, common.DIRECTIONS.BOTTOM);
+
 };
 
-World.prototype.addLaser = function(x, y, direction) {
-    console.log("Firing laser in " + x + "," + y);
+World.prototype.addLaser = function(origin, x, y, direction) {
     if (this.isTileAvailable(x, y)) {
-        var laser = new Laser(this, x, y, direction);
+        var laser = new Laser(this, origin, x, y, direction);
         this.lasers[laser.data.id] = laser;
         this.sendLaserData(laser);
+    }
+    else {
+        origin.removeLaser();
     }
 };
 
