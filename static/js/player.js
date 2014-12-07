@@ -51,7 +51,7 @@ Player.prototype.frame = function() {
     else if (keys.indexOf('right') != -1) {
         this.move(1, 0);
     }
-    if (keys.indexOf('enter') != -1) {
+    if (keys.indexOf('enter') != -1 || keys.indexOf('space') != -1) {
         this.shoot();
     }
 };
