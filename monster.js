@@ -40,6 +40,9 @@ Monster.prototype.step = function() {
     if (tools.randInt(0, 100) <= common.MONSTER_DIRECTION_CHANGE_PROBABILITY) {
         this.direction = this.generateDirection();
     }
+    if (tools.randInt(0, 100) <= common.MONSTER_FIRE_PROBABILITY) {
+        this.world.shoot(this);
+    }
     var newX = this.data.x, newY = this.data.y;
     switch (this.direction) {
         case common.DIRECTIONS.LEFT:
