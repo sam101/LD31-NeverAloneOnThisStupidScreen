@@ -25,13 +25,6 @@ common.emptyBar = PIXI.Texture.fromImage("res/emptybar.png");
 common.lifeBar = PIXI.Texture.fromImage("res/lifebar.png");
 common.expBar = PIXI.Texture.fromImage("res/expbar.png");
 
-common.assetsToLoad = [
-    "res/emptybar.png",
-    "res/laser.png",
-    "res/monsterLaser.png",
-    "res/"
-];
-
 common.monsterSprites = {
     0: {
         texture: PIXI.Texture.fromImage("res/monster0.png")
