@@ -65,6 +65,7 @@ Game.prototype.endGame = function() {
 Game.prototype.winGame = function() {
     var blurFilter = new PIXI.BlurFilter();
     world.filters = [blurFilter];
+    buzz.all().stop();
 
 
     var winGame = new PIXI.Text("YOU GOT TO LEVEL 42. YOU WON. SORRY, THERE'S NO HEAVEN.", {font:"23px pressstart", fill:"white", dropShadow:true});
