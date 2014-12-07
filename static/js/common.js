@@ -14,6 +14,8 @@ common.directions = {
     MAX:4
 };
 
+
+
 common.lasers = {
     0: PIXI.Texture.fromImage("res/laser.png"),
     1: PIXI.Texture.fromImage("res/monsterLaser.png")
@@ -22,16 +24,6 @@ common.lasers = {
 common.emptyBar = PIXI.Texture.fromImage("res/emptybar.png");
 common.lifeBar = PIXI.Texture.fromImage("res/lifebar.png");
 common.expBar = PIXI.Texture.fromImage("res/expbar.png");
-
-common.sprites = {
-    0: {
-        texture: PIXI.Texture.fromImage("res/player0.png")
-    },
-    1: {
-        texture: PIXI.Texture.fromImage("res/player1.png")
-    }
-
-};
 
 
 common.monsterSprites = {

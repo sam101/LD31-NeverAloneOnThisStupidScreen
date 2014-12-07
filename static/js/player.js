@@ -1,8 +1,8 @@
 "use strict";
 
 function Player(data) {
-    var textureData = common.sprites[data.sprite];
-    PIXI.Sprite.call(this, textureData.texture);
+    var textureData = PIXI.Texture.fromImage("res/player" + data.sprite + ".png");
+    PIXI.Sprite.call(this, textureData);
 
     this.data = data;
 

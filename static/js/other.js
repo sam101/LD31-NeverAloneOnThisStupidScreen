@@ -3,8 +3,8 @@
 function Other(data) {
     this.data = data;
 
-    var textureData = common.sprites[data.sprite];
-    PIXI.Sprite.call(this, textureData.texture);
+    var textureData = PIXI.Texture.fromImage("res/player" + data.sprite + ".png");
+    PIXI.Sprite.call(this, textureData);
 
     this.nameText = new PIXI.Text(data.name.toUpperCase() + "(" + data.level + ")", {font:"9px pressstart", fill:"white", dropShadow:true});
     this.nameText.anchor.x = 0.3;

@@ -1,8 +1,8 @@
 function Monster(data) {
     this.data = data;
 
-    var textureData = common.monsterSprites[data.sprite];
-    PIXI.Sprite.call(this, textureData.texture);
+    var textureData = PIXI.Texture.fromImage("res/monster" + data.sprite + ".png");
+    PIXI.Sprite.call(this, textureData);
 
     this.calculatePosition();
 }
