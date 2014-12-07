@@ -59,6 +59,21 @@ Game.prototype.endGame = function() {
     }, 5000);
 };
 
+Game.prototype.winGame = function() {
+    var blurFilter = new PIXI.BlurFilter();
+    world.filters = [blurFilter];
+
+
+    var winGame = new PIXI.Text("YOU GOT TO LEVEL 42. YOU WON.", {font:"30px pressstart", fill:"white", dropShadow:true});
+    winGame.position.x = common.RENDER_WIDTH / 2 - winGame.width / 2;
+    winGame.position.y = common.RENDER_HEIGHT / 2 - winGame.height / 2;
+    this.container.addChild(winGame);
+
+
+    this.isLaunched = false;
+
+}
+
 Game.prototype.invalidUsername = function() {
     var invalid = new PIXI.Text("YOU SUPPLIED AN INVALID USERNAME !", {font:"30px pressstart", fill:"white", dropShadow:true});
     invalid.position.x = common.RENDER_WIDTH / 2 - invalid.width / 2;

@@ -68,6 +68,12 @@ Player.prototype.addExp = function(expToAdd) {
         this.data.hp = formula.hpForLevel(this.data.level);
         this.data.hpMax = formula.hpForLevel(this.data.level);
         this.data.expToNextLevel = formula.expForLevel(this.data.level);
+
+        if (this.data.level >= 42) {
+            console.log(this.data.name + " won the game !");
+            this.socket.emit('winGame');
+            this.socket.disconnect();
+        }
     }
     this.world.sendPlayerDataToPlayers(this);
     this.socket.emit('data', this.data);

@@ -70,6 +70,9 @@ Network.prototype.connect = function() {
         game.endGame();
     });
 
+    this.socket.on('winGame', function() {
+        game.winGame();
+    });
 
 
 }
