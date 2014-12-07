@@ -8,6 +8,7 @@ function Player(socket, name, world) {
     this.socket = socket;
     this.world = world;
     this.isPlayer = true;
+    this.inWorld = true;
 
     this.canFire = true;
     this.missilesFired = 0;

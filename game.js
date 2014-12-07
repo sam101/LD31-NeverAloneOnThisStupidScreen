@@ -51,7 +51,9 @@ function handleNewPlayer(socket) {
             var player = world.getPlayer(socket);
 
             socket.on('disconnect', function() {
-                world.removePlayer(player);
+                if (player.inWorld) {
+                    world.removePlayer(player);
+                }
             });
 
             socket.on('move', function(x, y) {

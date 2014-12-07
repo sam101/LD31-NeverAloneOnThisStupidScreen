@@ -114,16 +114,20 @@ World.prototype.movePlayer = function(player, x, y) {
     }
 }
 
+
+
 World.prototype.removePlayer = function(player) {
     console.log("Removing " + player.name);
     this.size--;
     this.entities[player.data.y][player.data.x] = undefined;
+
+    player.inWorld = false;
+
     delete this.players[player.socket.id];
 
     for (var key in this.players) {
         this.players[key].socket.emit('removePlayer', player.name);
     }
-
 };
 
 World.prototype.killPlayer = function(player) {
