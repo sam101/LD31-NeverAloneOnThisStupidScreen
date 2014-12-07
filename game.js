@@ -1,5 +1,6 @@
 "use strict";
 var common = require('./common');
+var connectedPlayers = require('./connectedPlayers');
 var playerNameGenerator = require('./playerNameGenerator');
 var tools = require('./tools');
 
@@ -41,6 +42,11 @@ function handleNewPlayer(socket) {
     })
 
     socket.on('login', function(name) {
+        if (connectedPlayers.isConnected(name)) {
+            socket.emit('alreadyConnected');
+            return;
+        };
+        connectedPlayers.connect(name);
         playerNameGenerator.check(name, function(ok) {
             if (!ok) {
                 console.log("Tried invalid name " + name);
@@ -54,6 +60,7 @@ function handleNewPlayer(socket) {
                 var player = world.getPlayer(socket);
 
                 socket.on('disconnect', function() {
+                    connectedPlayers.disconnect(name);
                     if (player.inWorld) {
                         world.removePlayer(player);
                     }

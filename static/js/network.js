@@ -72,6 +72,12 @@ Network.prototype.connect = function() {
 
     this.socket.on('winGame', function() {
         game.winGame();
+        this.socket.disconnect();
+    });
+
+    this.socket.on('alreadyConnected', function(){
+        game.alreadyConnectedFromSomewhereElse();
+        this.socket.disconnect();
     });
 
 

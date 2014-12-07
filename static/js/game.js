@@ -82,6 +82,15 @@ Game.prototype.invalidUsername = function() {
     this.container.addChild(invalid);
 };
 
+Game.prototype.alreadyConnectedFromSomewhereElse = function() {
+    var invalid = new PIXI.Text("YOU'RE ALREADY CONNECTED FROM ANOTHER TAB !", {font:"30px pressstart", fill:"white", dropShadow:true});
+    invalid.position.x = common.RENDER_WIDTH / 2 - invalid.width / 2;
+    invalid.position.y = common.RENDER_HEIGHT / 2 - invalid.height / 2;
+
+    this.container.addChild(invalid);
+
+};
+
 Game.prototype.draw = function() {
     this.renderer.render(this.stage);
     this.frame();

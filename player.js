@@ -75,7 +75,6 @@ Player.prototype.addExp = function(expToAdd) {
         if (this.data.level >= 42) {
             console.log(this.data.name + " won the game !");
             this.socket.emit('winGame');
-            this.socket.disconnect();
         }
     }
     this.world.sendPlayerDataToPlayers(this);
