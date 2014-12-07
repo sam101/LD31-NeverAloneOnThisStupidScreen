@@ -7,3 +7,11 @@ exports.expForLevel = function(level) {
 exports.hpForLevel = function(level) {
     return 75 + level * 25;
 }
+
+exports.hpForMonster = function(level) {
+    return 10 + level * 10;
+}
+
+exports.attackForLevel = function(level) {
+    return level * 10;
+}
