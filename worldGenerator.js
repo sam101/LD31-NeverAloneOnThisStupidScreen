@@ -1,7 +1,7 @@
 "use strict";
 var common = require('./common');
 var tools = require('./tools');
-var Tile = require('./Tile');
+var Tile = require('./tile');
 
 function WorldGenerator(width, height) {
     this.width = width;
