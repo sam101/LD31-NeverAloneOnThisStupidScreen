@@ -31,5 +31,5 @@ app.use('*', function(req, res) {
 
 game.use(io);
 
-http.listen(argv.port || 8080);
+http.listen(argv.port || 8081);
 

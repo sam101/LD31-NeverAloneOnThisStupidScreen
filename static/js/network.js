@@ -96,6 +96,7 @@ Network.prototype.generatePlayerName = function(callback) {
         callback.call(self, name);
     })
 }
-
-
-var network = new Network();
+var network;
+$(window).bind("load", function() {
+    network = new Network();
+});

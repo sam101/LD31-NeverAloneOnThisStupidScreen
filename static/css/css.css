@@ -2,6 +2,7 @@ body {
     margin: 0;
     padding: 0;
     background-color:black;
+    overflow:hidden;
 }
 
 html, body {
@@ -18,4 +19,11 @@ canvas {
 @font-face {
     font-family: 'pressstart';
     src: url('../res/prstartk.ttf');
+}
+
+#placeholder {
+    visibility:hidden;
+    color:black;
+    size:1px;
+    font-family: 'pressstart';
 }
