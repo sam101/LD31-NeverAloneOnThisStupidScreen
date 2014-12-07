@@ -4,11 +4,11 @@ var adjectives = require('./data/adjectives.json');
 var animals = require('./data/animals.json');
 var colors = require('./data/colors.json');
 
-var playerData = require('./persistance/playerdata');
+var PlayerData = require('./persistance/playerdata');
 var tools = require('./tools');
 
 exports.check = function(username, callback) {
-    playerData.findOne({name: username}, function(err, playerData) {
+    PlayerData.findOne({name: username}, function(err, playerData) {
         if (err) {
             return callback(false);
         }
@@ -37,12 +37,12 @@ exports.generate = function(callback) {
         nickname = adjective + animal + number;
     }
 
-    var PlayerData = new playerData({
+    var playerData = new PlayerData({
         name: nickname,
         level:1
     });
 
-    PlayerData.save(function(err) {
+    playerData.save(function(err) {
         if (err) {
             return console.error(err);
         }

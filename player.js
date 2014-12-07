@@ -3,6 +3,8 @@ var common = require('./common');
 var formula = require('./formula');
 var tools = require('./tools');
 
+var PlayerData = require('./persistance/playerdata');
+
 function Player(socket, name, world) {
     this.name = name;
     this.socket = socket;
@@ -26,6 +28,35 @@ function Player(socket, name, world) {
 
     this.generateInitialPosition();
 }
+Player.prototype.load = function(callback) {
+    var self = this;
+    PlayerData.findOne({name: this.data.name}, function(err, playerData) {
+        if (err || playerData == undefined) {
+            self.playerData = new PlayerData({
+                name: self.data.name,
+                level: 1
+            });
+        }
+        else {
+            self.playerData = playerData;
+            self.data.level = playerData.level;
+        }
+        return callback();
+    });
+};
+
+Player.prototype.save = function(){
+    var self = this;
+    this.playerData.save(function(err) {
+        if (err) {
+            console.err("Saving of " + self.data.name + " failed. Too bad for him");
+        }
+        else {
+            console.log("Saving of " + self.data.name + " ok.");
+        }
+    });
+};
+
 
 Player.prototype.addExp = function(expToAdd) {
     this.data.exp += expToAdd;

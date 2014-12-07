@@ -91,11 +91,14 @@ World.prototype.addPlayer = function(socket, name, callback) {
     this.size++;
 
     var player = new Player(socket, name, this);
-    this.players[socket.id] = player;
+    var self = this;
+    player.load(function() {
+        self.players[socket.id] = player;
 
-    this.sendDataToPlayer(player);
-    this.sendPlayerDataToPlayers(player);
-    callback();
+        self.sendDataToPlayer(player);
+        self.sendPlayerDataToPlayers(player);
+        callback();
+    });
 
 };
 
@@ -116,7 +119,7 @@ World.prototype.movePlayer = function(player, x, y) {
 
 
 
-World.prototype.removePlayer = function(player) {
+World.prototype.removePlayer = function(player, callback) {
     console.log("Removing " + player.name);
     this.size--;
     this.entities[player.data.y][player.data.x] = undefined;
@@ -128,10 +131,13 @@ World.prototype.removePlayer = function(player) {
     for (var key in this.players) {
         this.players[key].socket.emit('removePlayer', player.name);
     }
+
+    player.save();
+
 };
 
 World.prototype.killPlayer = function(player) {
-    player.socket.emit('death');
+
     this.removePlayer(player);
 }
 
