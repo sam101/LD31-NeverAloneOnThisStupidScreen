@@ -37,3 +37,8 @@ The graphics are inspired from stuff generated from the Random Sprite Generator 
 ( http://ludumdare.com/compo/2013/04/03/random-sprite-generator-1-0/ ).
 
 The annoying music has been generated using cgmusic (that thing is AWESOME) and slightly edited.
+
+Remerciments
+------------
+Pitouli, for the stupid name generator.
+Pitch, for beta-testing the game.
