@@ -2,7 +2,8 @@
 var sounds = {};
 
 sounds.MUSIC = new buzz.sound("sounds/first", {
-    formats: ["mp3"]
+    formats: ["mp3"],
+    loop: true
 });
 sounds.MUSIC.setVolume(50);
 
