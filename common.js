@@ -19,6 +19,7 @@ module.exports = {
         RIGHT:3,
         MAX:4
     },
+    PLAYER_AROUND_SIZE: 4,
     MONSTER_DIRECTION_CHANGE_PROBABILITY: 25,
     MONSTER_FIRE_PROBABILITY: 10,
     TILES: {

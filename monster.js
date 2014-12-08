@@ -32,7 +32,7 @@ Monster.prototype.generateInitialPosition = function() {
     do {
         var x = tools.randInt(0, this.world.width);
         var y = tools.randInt(0, this.world.height);
-    } while (! this.world.isTileAvailable(x, y));
+    } while (! this.world.isTileAvailable(x, y) || this.world.isThereAPlayerAround(x,y));
     this.world.addMonster(this, x, y);
 };
 

@@ -45,7 +45,25 @@ World.prototype.isTileAvailable = function(x, y) {
         return false;
     }
     return true;
-}
+};
+
+World.prototype.isThereAPlayerAround = function(x, y) {
+    var startX = Math.max(0, x - common.PLAYER_AROUND_SIZE);
+    var startY = Math.max(0, y - common.PLAYER_AROUND_SIZE);
+    var endX = Math.min(common.WIDTH - 1, x + common.PLAYER_AROUND_SIZE);
+    var endY = Math.min(common.HEIGHT - 1, y + common.PLAYER_AROUND_SIZE);
+
+    for (var i = startY; i <= endY; i++) {
+        for (var j = startX; j <= endX; j++) {
+            if (this.entities[y][x] != undefined) {
+                if (this.entities[y][x].isPlayer) {
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
+};
 
 World.prototype.collidesWithPlayer = function(x, y) {
     if (this.entities[y][x] == undefined) {
@@ -56,7 +74,7 @@ World.prototype.collidesWithPlayer = function(x, y) {
         return true;
     }
     return false;
-}
+};
 
 World.prototype.addPlayerToPosition = function(player, x, y) {
     if (this.entities[y][x] != undefined) {
