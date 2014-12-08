@@ -9,7 +9,7 @@ var argv = require('optimist').argv;
 var express =require('express');
 var serveStatic = require('serve-static');
 
-var env = argv.env || 'development';
+var env = argv.env || 'production';
 
 var app = express();
 app.set('view engine', 'jade');

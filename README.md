@@ -10,7 +10,8 @@ EVEN WORSE, other players, that comes to annoy you.
 But maybe you'll get to the heaven of 8-bits guys if you kill enough guys. And don't worry, your guy will always remember
 his stupid name and his level if he dies.
 
-You can play using the arrow keys, and space/enter to fire.
+You can play using the arrow keys, and space/enter to fire. If you want to keep your level from another pc / browser,
+you can use the second link (http://ld31.slepetit.com/#returning ) to enter your username.
 
 Please play using a modern, Chrome/Safari recommended, since Firefox tends to lag a bit sometimes :(.
 
