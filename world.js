@@ -189,6 +189,9 @@ World.prototype.sendDataToPlayer = function(player) {
 };
 
 World.prototype.step = function(n) {
+    if (this.size <= 0) {
+        return;
+    }
     if (n % 10 == 0) {
         this.checkMonsterPopulation();
     }
