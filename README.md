@@ -13,7 +13,9 @@ his stupid name and his level if he dies.
 You can play using the arrow keys, and space/enter to fire. If you want to keep your level from another pc / browser,
 you can use the second link (http://ld31.slepetit.com/#returning ) to enter your username.
 
-Please play using a modern, Chrome/Safari recommended, since Firefox tends to lag a bit sometimes :(.
+Sometimes, the fonts might now load, so you'll get really crappy fonts, you'll just need reload the page to fix it.
+
+Please play using a modern, Chrome/Safari/WebKit browser is recommended, since Firefox tends to lag a bit sometimes :(.
 
 Online version: http://ld31.slepetit.com
 
