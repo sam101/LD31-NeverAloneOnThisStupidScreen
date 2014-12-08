@@ -70,6 +70,8 @@ Game.prototype.winGame = function() {
     buzz.all().stop();
 
 
+    this.isLaunched = false;
+
     var winGame = new PIXI.Text("YOU GOT TO LEVEL 42. YOU WON. SORRY, THERE'S NO HEAVEN.", {font:"23px pressstart", fill:"white", dropShadow:true});
     winGame.position.x = common.RENDER_WIDTH / 2 - winGame.width / 2;
     winGame.position.y = common.RENDER_HEIGHT / 2 - winGame.height / 2;

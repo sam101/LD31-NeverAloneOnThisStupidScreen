@@ -27,8 +27,9 @@ Network.prototype.connect = function() {
     this.socket.emit('login', this.playerName);
 
     this.socket.on('disconnect', function() {
-        console.log("Disconnected");
-        game.gotDisconnected();
+        if (game.isLaunched) {
+            game.gotDisconnected();
+        }
     });
 
     this.socket.on('initialData', function(initialData) {
@@ -77,13 +78,14 @@ Network.prototype.connect = function() {
     });
 
     this.socket.on('death', function() {
-        game.endGame();
+        if (game.isLaunched) {
+            game.endGame();
+        }
     });
 
     this.socket.on('winGame', function() {
         if (game.isLaunched) {
             game.winGame();
-
             this.socket.disconnect();
         }
     });
@@ -94,7 +96,9 @@ Network.prototype.connect = function() {
     });
 
     this.socket.on('damageTaken', function() {
-        world.player.damageTaken();
+        if (game.isLaunched) {
+            world.player.damageTaken();
+        }
     });
 }
 
