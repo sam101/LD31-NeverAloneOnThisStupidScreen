@@ -67,11 +67,15 @@ function handleNewPlayer(socket) {
                 });
 
                 socket.on('move', function(x, y) {
-                    world.movePlayer(player, x, y);
+                    if (player.inWorld) {
+                        world.movePlayer(player, x, y);
+                    }
                 });
 
                 socket.on('shoot', function() {
-                    world.shoot(player);
+                    if (player.inWorld) {
+                        world.shoot(player);
+                    }
                 });
             });
         })

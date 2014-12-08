@@ -26,6 +26,11 @@ Network.prototype.connect = function() {
     console.log("Logging in as " + this.playerName);
     this.socket.emit('login', this.playerName);
 
+    this.socket.on('disconnect', function() {
+        console.log("Disconnected");
+        game.gotDisconnected();
+    });
+
     this.socket.on('initialData', function(initialData) {
         game.startGame(initialData);
     })
@@ -91,7 +96,6 @@ Network.prototype.connect = function() {
     this.socket.on('damageTaken', function() {
         world.player.damageTaken();
     });
-
 }
 
 Network.prototype.generatePlayerName = function(callback) {

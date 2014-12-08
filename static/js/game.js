@@ -114,6 +114,19 @@ Game.prototype.frame = function() {
     }
 };
 
+Game.prototype.gotDisconnected = function() {
+    var blurFilter = new PIXI.BlurFilter();
+    world.filters = [blurFilter];
+    buzz.all().stop();
+
+    var error = new PIXI.Text("CONNECTION WITH SERVER LOST. SORRY.", {font:"30px pressstart", fill:"white", dropShadow:true});
+    error.position.x = common.RENDER_WIDTH / 2 - error.width / 2;
+    error.position.y = common.RENDER_HEIGHT / 2 - error.height / 2;
+
+    this.container.addChild(error);
+
+};
+
 window.onresize = function(event) {
     game.sizeContainer();
 };
