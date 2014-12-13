@@ -1,3 +1,10 @@
+/**
+  * Generate a world with a simple cellular automata.
+  * This cellular automata is actually broken, since it
+  * doesn't check the previous state of the current neighbor
+  * cell but its current state.
+  * Somehow, it still generates some cool structures so...
+  */
 "use strict";
 var common = require('./common');
 var tools = require('./tools');
